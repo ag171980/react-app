@@ -26,19 +26,14 @@ export default function CrearCuenta() {
             // apellido: document.querySelector("#text_apellido").value,
             // pwd: document.querySelector("#pwd_user").value,
         }
-        const config = {
-            url: baseUrl,
-            method: 'POST',
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
-                'Content-Type': 'application/json',
-            },
-            data: JSON.stringify(userData),
+        const headers = {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+            'Content-Type': 'application/json',
         };
         // if (userData.email !== "" && userData.nombre !== "" && userData.apellido !== "" && userData.pwd !== "") {
         if (userData.email !== "") {
-            axios.post(baseUrl, config)
+            axios.post(baseUrl, userData, { headers })
                 .then((res) => {
                     console.log(res.status)
                 })
