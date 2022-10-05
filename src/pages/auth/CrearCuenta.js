@@ -16,9 +16,9 @@ export default function CrearCuenta() {
         const baseUrl = "https://kcomer.herokuapp.com/api/user/"
         let userData = {
             email: document.querySelector("#email_user").value,
-            nombre: document.querySelector("#text_nombre").value,
-            apellido: document.querySelector("#text_apellido").value,
-            pwd: document.querySelector("#pwd_user").value,
+            // nombre: document.querySelector("#text_nombre").value,
+            // apellido: document.querySelector("#text_apellido").value,
+            // pwd: document.querySelector("#pwd_user").value,
         }
         const config = {
             url: baseUrl,
