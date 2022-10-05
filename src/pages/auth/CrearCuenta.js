@@ -13,7 +13,7 @@ export default function CrearCuenta() {
 
     const crearCuenta = (e) => {
         e.preventDefault();
-        const baseUrl = "https://kcomer.herokuapp.com/api/signup/"
+        const baseUrl = "https://kcomer.herokuapp.com/api/user/"
         let userData = {
             email: document.querySelector("#email_user").value,
             nombre: document.querySelector("#text_nombre").value,
