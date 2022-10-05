@@ -15,7 +15,7 @@ export default function CrearCuenta() {
         e.preventDefault();
         const baseUrl = "https://kcomer.herokuapp.com/api/user/"
         let userData = {
-            id: 1,
+            id: 2,
             // email: document.querySelector("#email_user").value,
             email: "asd@gmail.com",
             username: "a",
