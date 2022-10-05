@@ -15,7 +15,13 @@ export default function CrearCuenta() {
         e.preventDefault();
         const baseUrl = "https://kcomer.herokuapp.com/api/user/"
         let userData = {
-            email: document.querySelector("#email_user").value
+            id: 1,
+            email: document.querySelector("#email_user").value,
+            username: "a",
+            genre: "M",
+            country: "Arg",
+            avatar: null,
+            date_of_birth: null
             // nombre: document.querySelector("#text_nombre").value,
             // apellido: document.querySelector("#text_apellido").value,
             // pwd: document.querySelector("#pwd_user").value,
@@ -29,7 +35,8 @@ export default function CrearCuenta() {
             },
             data: JSON.stringify(userData),
         };
-        if (userData.email !== "" && userData.nombre !== "" && userData.apellido !== "" && userData.pwd !== "") {
+        // if (userData.email !== "" && userData.nombre !== "" && userData.apellido !== "" && userData.pwd !== "") {
+        if (userData.email !== "") {
             axios.post(baseUrl, config)
                 .then((res) => {
                     console.log(res.status)
