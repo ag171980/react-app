@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React from 'react'
+import Navbar from '../components/NavBar/navbar'
 import { Link } from 'react-router-dom'
 
 export default function CrearCuenta() {
@@ -15,14 +16,16 @@ export default function CrearCuenta() {
         e.preventDefault();
         const baseUrl = "https://kcomer.herokuapp.com/api/user/"
         let userData = {
+            //test
             id: 2,
-            // email: document.querySelector("#email_user").value,
             email: "asd@gmail.com",
             username: "a",
             genre: "M",
             country: "Arg",
             avatar: null,
             date_of_birth: null
+            //original
+            // email: document.querySelector("#email_user").value,
             // nombre: document.querySelector("#text_nombre").value,
             // apellido: document.querySelector("#text_apellido").value,
             // pwd: document.querySelector("#pwd_user").value,
@@ -33,29 +36,20 @@ export default function CrearCuenta() {
             'Content-Type': 'application/json',
         };
         // if (userData.email !== "" && userData.nombre !== "" && userData.apellido !== "" && userData.pwd !== "") {
-        if (userData.email !== "") {
-            axios.post(baseUrl, userData, { headers })
-                .then((res) => {
-                    console.log(res.status)
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-        }
+        axios.post(baseUrl, userData, { headers })
+            .then((res) => {
+                console.log(res.status)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+        // }
 
     }
     return (
         <React.Fragment>
             <div className="flex layout">
-                <div className="block14 layout">
-                    <div className="block15 layout">
-                        <div className="block15__item">
-                            <Link to="/" className="crea_cuenta"><img src="../assets/img/KeComer.png" alt="" className="icon1 layout" /></Link>
-                        </div>
-                        <div className="spacer block15__spacer"></div>
-                        <h5 className="highlights3 layout">KE COMER</h5>
-                    </div>
-                </div>
+                <Navbar></Navbar>
                 <div className="block1 layout">
                     <div className="block2 layout">
                         <div className="block3 layout">

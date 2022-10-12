@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import Navbar from '../components/NavBar/navbar'
 import '../../assets/css/login.css'
 // import Cookies from 'universal-cookie'
 // import Home from '../home/Home';
@@ -97,15 +98,7 @@ function LoginP() {
       <div className="flex layout">
         <div className='notification'>
         </div>
-        <div className="block14 layout">
-          <div className="block15 layout">
-            <div className="block15__item">
-              <Link to="/"><img src="../assets/img/KeComer.png" alt="" className="icon1 layout" /></Link>
-            </div>
-            <div className="spacer block15__spacer"></div>
-            <h5 className="highlights3 layout">KE COMER</h5>
-          </div>
-        </div>
+        <Navbar></Navbar>
         <div className="block1 layout">
           <div className="block2 layout">
             <div className="block3 layout">

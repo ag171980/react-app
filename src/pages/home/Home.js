@@ -1,41 +1,47 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+// import { Link } from 'react-router-dom'
+import Navbar from '../components/NavBar/navbar'
+import "./home.css"
 
 export default function Home() {
+    const ingredientesActuales = [];
+    const [ingredientes, setIngrediente] = useState(ingredientesActuales);
+    const [recetas, setRecetas] = useState([])
+
+    function llenarIngredientes(e) {
+        e.preventDefault();
+        let ingrediente = document.querySelector("#ingrediente").value
+        setIngrediente([...ingredientes, ingrediente])
+    }
+    function eliminarIngrediente(val) {
+        const asd = ingredientes.indexOf(val)
+        if (asd > -1) {
+            ingredientes.splice(asd, 1)
+        }
+        setIngrediente([...ingredientes])
+    }
+    function modal() {
+        if (document.querySelector(".modalDetail").classList.contains("show")) {
+            document.querySelector(".modalDetail").classList.remove("show")
+        } else {
+            document.querySelector(".modalDetail").classList.add("show")
+        }
+    }
+    useEffect(() => {
+        axios.get("https://kecomer.onrender.com/recipes/recipes/", {
+            headers: {
+                'Test-Header': 'test-value'
+            }
+        })
+            .then((data) => {
+                console.log(data)
+            })
+    }, [ingredientes])
     return (
         <React.Fragment>
-            <div>
-                <header>
-                    <nav>
-
-                        <div className="block15__item">
-                            <Link to="/"><img src="../assets/img/KeComer.png" alt="" className="icon1 layout" /><h3 className="highlights3 layout">KE COMER</h3></Link>
-
-                        </div>
-
-                        <div className="url">
-                            <ul>
-                                <li>
-                                    <label for="carnes">Carnes <img src="../assets/img/flecha-abajo.svg" alt='flecha abajo' /></label>
-                                </li>
-                                <li>
-                                    <label for="vegetales">Vegetales <img src="../assets/img/flecha-abajo.svg" alt='flecha abajo' /></label>
-                                </li>
-                                <li>
-                                    <label for="condimientos">Codimentos <img src="../assets/img/flecha-abajo.svg" alt='flecha abajo' /></label>
-                                </li>
-                                <li>
-                                    <label for="categoria">Mas Categorias <img src="../assets/img/flecha-abajo.svg" alt='flecha abajo' /></label>
-                                </li>
-                            </ul>
-                        </div>
-                        <div className="btn">
-                            <Link to="/login"><button className="btn1">Ingresar</button></Link>
-                            <Link to="/creacuenta"><button className="btn2">Crea tu Cuenta</button></Link>
-                            <Link to="/apiconsume"><button className="btn3">Api</button></Link>
-                        </div>
-                    </nav>
-                </header>
+            <div className='Home'>
+                <Navbar></Navbar>
                 <main>
                     <p>¡Hola! Ingresa los ingredientes y te <br /> decimos qué podes preparar <br /> <span>Podes ingresar hasta 5
                         ingredientes</span>
@@ -43,10 +49,33 @@ export default function Home() {
                     <div className="category">
                         <div className="divCategory">
                             <img src="../assets/img/carnes.png" alt='Carnes' />
-                            <span>Carnes</span>
+                            <span onClick={modal}>Carnes</span>
+                            <div className='modalDetail'>
+                                <div className='contentModal'>
+                                    <div className='headModal'>
+                                        <button onClick={modal}><img src='../assets/img/closeblack.png' /></button>
+                                        <h4>Seleccionar</h4>
+                                    </div>
+                                    <div className='bodyModal'>
+                                        <h4>Carnes</h4>
+                                        <ul>
+                                            <li><input type="checkbox" name="tiposCarnes" id='vaca' /> <label htmlFor='vaca'>Vaca</label></li>
+                                            <li><input type="checkbox" name="tiposCarnes" id='Cerdo' /> <label htmlFor='Cerdo'>Cerdo</label></li>
+                                            <li><input type="checkbox" name="tiposCarnes" id='Pollo' /> <label htmlFor='Pollo'>Pollo</label></li>
+                                            <li><input type="checkbox" name="tiposCarnes" id='Pescado' /> <label htmlFor='Pescado'>Pescado</label></li>
+                                            <li><input type="checkbox" name="tiposCarnes" id='Carnes' /> <label htmlFor='Carnes'>Carnes exóticas</label></li>
+                                            <li><input type="checkbox" name="tiposCarnes" id='Frutos' /> <label htmlFor='Frutos'>Frutos de mar</label></li>
+                                        </ul>
+                                    </div>
+                                    <div className='footerModal'>
+                                        <button className='btn1'>Confirmar selección</button>
+                                        <button className='btn4'>Confirmar selección</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div className="divCategory">
-                            <img src="../assets/img/verduras.png" alt='Verduras' />
+                            <img src="../assets/img/frutas.png" alt='Verduras' />
                             <span>Vegetales</span>
                         </div>
                         <div className="divCategory">
@@ -66,25 +95,34 @@ export default function Home() {
                             <span>Bebidas</span>
                         </div>
                         <div className="divCategory">
-                            <img src="../assets/img/harinas-y-granos.png" alt='Harinass' />
-                            <span>Harinas y granos</span>
-                        </div>
-                        <div className="divCategory">
                             <img src="../assets/img/grasas.png" alt='Grasas' />
                             <span>Grasas y aceites</span>
+                        </div>
+                        <div className="divCategory">
+                            <img src="../assets/img/harinas-y-granos.png" alt='Harinass' />
+                            <span>Harinas y granos</span>
                         </div>
                     </div>
                     <div className="barraBusqueda">
                         <div className="input">
                             <img src="../assets/img/lupa.svg" alt='Lupa' />
-                            <input type="text" placeholder="Ingresar ingredientes" />
+                            <input type="text" id='ingrediente' placeholder="Ingresar ingrediente" />
                         </div>
-                        <button className="btn3"><img src="../assets/img/mas0112483-jv7a.svg" alt='.' />
+                        <button onClick={llenarIngredientes} className="btn3">
+                            <img src="../assets/img/mas0112483-jv7a.svg" alt='.' />
                             Agregar</button>
-                        <button className="btn4">Buscar receta</button>
+                        <button className="btn4">Buscar recetas</button>
+                    </div>
+                    <div className='ingredientes'>
+                        {ingredientes.map((ingred, index) => {
+                            return <div className='ingredienteItem' key={index}>
+                                <p>{ingred}</p>
+                                <button className='eliminarIngrediente' onClick={() => eliminarIngrediente(ingred)}>x</button>
+                            </div>
+                        })}
                     </div>
                 </main>
-            </div>
-        </React.Fragment>
+            </div >
+        </React.Fragment >
     )
 }
