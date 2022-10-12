@@ -7,7 +7,7 @@ import "./home.css"
 export default function Home() {
     const ingredientesActuales = [];
     const [ingredientes, setIngrediente] = useState(ingredientesActuales);
-    const [recetas, setRecetas] = useState([])
+    // const [recetas, setRecetas] = useState([])
 
     function llenarIngredientes(e) {
         e.preventDefault();
@@ -53,7 +53,7 @@ export default function Home() {
                             <div className='modalDetail'>
                                 <div className='contentModal'>
                                     <div className='headModal'>
-                                        <button onClick={modal}><img src='../assets/img/closeblack.png' /></button>
+                                        <button onClick={modal}><img src='../assets/img/closeblack.png' alt='asdasd' /></button>
                                         <h4>Seleccionar</h4>
                                     </div>
                                     <div className='bodyModal'>
