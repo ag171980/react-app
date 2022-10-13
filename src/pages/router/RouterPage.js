@@ -6,6 +6,7 @@ import CrearCuenta from '../auth/CrearCuenta'
 import Home from "../home/Home"
 import ApiConsumo from '../dashboard/ApiConsumo'
 
+
 export default function RouterPage() {
   return (
     <div>
