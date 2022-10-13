@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import Navbar from '../components/NavBar/navbar'
 import '../../assets/css/login.css'
+import { Formik ,Field, Form } from 'formik'
+import { Context } from '../contexto/Context'
+import { useContext } from 'react'
 // import Cookies from 'universal-cookie'
 // import Home from '../home/Home';
 
@@ -10,6 +13,7 @@ import '../../assets/css/login.css'
 // const cookies = new Cookies();
 
 function LoginP() {
+  const{logIn, log}= useContext(Context)
   // const comprobarSesion = () => {
   //   var sesion = localStorage.getItem("miLogin");
   //   if (sesion) {
@@ -90,7 +94,7 @@ function LoginP() {
     }
   }
 
-
+console.log(log)
 
 
   return (
@@ -108,42 +112,58 @@ function LoginP() {
                   <h3 className="highlights layout">¿No tenés cuenta?  <Link to="/creacuenta" className="crea_cuenta">  Crear cuenta</Link></h3>
                   <div>
                   </div>
-                  <form id='form_login'>
+                   <Formik
+                   initialValues={{email:"", contraseña:""}}
+                   onSubmit={(values,actions,) => {
+                    actions.resetForm();
+                    logIn(values);
+                  }}
+                   >
+                   {props=>(
+                    <Form>
                     <div className="mb-3">
-                      <label className="form-label">Correo electrónico</label>
-                      <input
-                        type="email"
-                        className="form-control"
-                        name="email_user"
-                        id="email_user"
-                        aria-describedby="emailHelp"
-                        required />
-                    </div>
-                    <div className="cont-pwd mb-3">
-                      <label className="form-label">Contraseña</label>
-                      <input
-                        type="password"
-                        className="form-control"
-                        name="pwd_user"
-                        id="pwd_user"
-                        required />
-                      <svg onClick={showPwd} className='eye_hide bi bi-eye-slash-fill' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z" />
-                        <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z" />
-                      </svg>
-                    </div>
+                    <label className="form-label">Correo electrónico</label>
+                    <Field
+                      type="email"
+                      className="form-control"
+                      name="email"
+                      id="email_user"
+                      aria-describedby="emailHelp"
+                      required
+                      onChangeText={props.handleChange('email')}
+                      value={props.values.email}
+                       />
+                  </div>
+                  <div className="cont-pwd mb-3">
+                    <label className="form-label">Contraseña</label>
+                    <Field
+                      type="password"
+                      className="form-control"
+                      name="contraseña"
+                      id="pwd_user"
+                      required
+                      onChangeText={props.handleChange('contraseña')}
+                      value={props.values.contraseña}
+                       />
+                    <svg onClick={showPwd} className='eye_hide bi bi-eye-slash-fill' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z" />
+                      <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z" />
+                    </svg>
+                  </div>
 
 
-                    <div >
-                      <p className="olvide">Olvidé mi contraseña</p>
-                    </div>
+                  <div >
+                    <p className="olvide">Olvidé mi contraseña</p>
+                  </div>
 
-                    <div className="block10 layout">
-                      <button type="submit" className="btn btn-outline-danger espacio" onClick={iniciarSesion}>Iniciar sesión</button>
+                  <div className="block10 layout">
+                   <button type="submit" className="btn btn-outline-danger espacio" onClick={props.handleSubmit}> <Link to="/">Iniciar sesión</Link></button>
 
-                      <button type="button" className="btn btn-outline-secondary espacio"><img src="../assets/img/44d99b5c0ac21f42e4480177f374344a.png" alt="" width="20" />Ingresar con Google</button>
-                    </div>
-                  </form>
+                    <button type="button" className="btn btn-outline-secondary espacio"><img src="../assets/img/44d99b5c0ac21f42e4480177f374344a.png" alt="" width="20" />Ingresar con Google</button>
+                  </div>
+                  </Form>
+                   )}
+                   </Formik>
                 </div>
               </div>
             </div>

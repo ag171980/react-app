@@ -2,13 +2,24 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 // import { Link } from 'react-router-dom'
 import Navbar from '../components/NavBar/navbar'
+import Nav from '../components/NavBar/Nav';
 import "./home.css"
+import { Context } from '../contexto/Context';
+import { useContext } from 'react';
 
 export default function Home() {
+    const{ log,account }=useContext(Context)
     const ingredientesActuales = [];
     const [ingredientes, setIngrediente] = useState(ingredientesActuales);
     // const [recetas, setRecetas] = useState([])
-
+   function compare(props1, props2){
+    if(props1[0].email !== props2.email && props1[0].contraseña !== props2.contraseña){
+        return false
+    } else{
+        return true
+    }
+    
+   }
     function llenarIngredientes(e) {
         e.preventDefault();
         let ingrediente = document.querySelector("#ingrediente").value
@@ -28,7 +39,7 @@ export default function Home() {
             document.querySelector(".modalDetail").classList.add("show")
         }
     }
-    useEffect(() => {
+    /*useEffect(() => {
         axios.get("https://kecomer.onrender.com/recipes/recipes/", {
             method: 'GET',
             mode: 'no-cors',
@@ -42,11 +53,13 @@ export default function Home() {
             .then((data) => {
                 console.log(data)
             })
-    }, [ingredientes])
+    }, [ingredientes])*/
+    console.log(account)
+    console.log(log)
     return (
         <React.Fragment>
             <div className='Home'>
-                <Navbar></Navbar>
+                <Nav props={compare(account,log)} ></Nav>
                 <main>
                     <p>¡Hola! Ingresa los ingredientes y te <br /> decimos qué podes preparar <br /> <span>Podes ingresar hasta 5
                         ingredientes</span>

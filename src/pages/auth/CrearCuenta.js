@@ -3,8 +3,10 @@ import React from 'react'
 import Navbar from '../components/NavBar/navbar'
 import { useState } from 'react';
 import { Formik, Field, Form} from 'formik';
+//import { Context } from '../contexto/Context';
 import { Link } from 'react-router-dom'
 import * as yup from 'yup'
+//import { useContext } from 'react';
 
 const reviewSchema = yup.object({
     email: yup.string().email('Invalid Email').required('required'),
@@ -14,6 +16,8 @@ const reviewSchema = yup.object({
         'Need one special character',).min(8).max(15),
 })
 export default function CrearCuenta() {
+    //const{agregarCuenta, account} = useContext(Context)
+    const[datos, setDatos]= useState([])
     function showPwd() {
         if (document.querySelector('#pwd_user').type === "password") {
             document.querySelector('#pwd_user').type = 'text'
@@ -54,9 +58,9 @@ export default function CrearCuenta() {
                 console.log(err)
             })
         // }
-
+        
     }
-  
+   
    
     return (
         <React.Fragment>
