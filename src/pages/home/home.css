@@ -1,99 +1,30 @@
 .Home {
-    height: 100vh;
-    background-color: white;
+    min-height: 100vh;
+    background-color: rgba(250, 250, 250, 1);
 }
 .category {
     width: 800px;
     justify-content: center;
     flex: 1 1 auto;
+    visibility: visible;
+    transition: 0.5s all;
 }
+
 .divCategory {
     border-radius: 50px;
+    transition: 0.5s all;
+}
+.divCategory:hover{
+    cursor: pointer;
+    background-color: #feecf1;
+}
+.divCategory:hover span{
+    color: #a44663;
 }
 .divCategory span {
     font-size: 17px;
 }
-.divCategory img {
-    background: #feecf1;
-    padding: 2px;
-    border-radius: 50%;
-}
-.divCategory .modalDetail {
-    transition: 0.5s all;
-    display: none;
-    opacity: 0;
-    visibility: hidden;
-}
-.divCategory .show {
-    opacity: 1;
-    visibility: visible;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 9;
-    height: 100vh;
-    width: 100vw;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.divCategory .show .contentModal {
-    height: 500px;
-    width: 600px;
-    background-color: white;
-    border-radius: 10px;
-}
-.headModal {
-    display: flex;
-    flex-direction: row;
-    padding: 10px;
-    border-bottom: 2px solid #feecf1;
-    height: 10%;
-}
-.headModal h4 {
-    margin: 0 auto;
-    font-size: 17px;
-    font-weight: bold;
-}
-.bodyModal {
-    height: 75%;
-    padding: 10px 20px;
-}
-.bodyModal h4{
-    padding: 10px 0;
-    font-size: 21px;
-}
-.bodyModal ul {
-    padding: 0;
-}
-.bodyModal ul li {
-    padding: 5px 0;
-    font-size: 16px;
-}
-.bodyModal ul li input {
-    margin-right: 10px;
-}
-.footerModal {
-    border-top: 1px solid lightgray;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    height: 15%;
-}
-.footerModal .btn1 {
-    width: auto;
-    height: 44px;
-    padding: 5px 15px;
-    font-size: 14px;
-}
-.footerModal .btn4 {
-    width: auto;
-    padding: 5px 15px;
-    font-size: 14px;
-}
+
 .barraBusqueda {
     justify-content: space-between;
     width: 780px;
@@ -146,4 +77,80 @@
     background-color: #feecf1;
     padding: 5px;
     border-radius: 50%;
+}
+
+.contenedorRecetas {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-gap: 30px;
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    padding: 15px 0;
+}
+.contenedorRecetas .receta {
+    border-radius: 5px;
+    background-color: white;
+    width: 380px;
+    box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
+    transition: 0.5s all;
+}
+.contenedorRecetas .receta img {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    width: 100%;
+}
+.contenedorRecetas .receta .descripcion {
+    padding: 15px;
+}
+.contenedorRecetas .receta .descripcion h2 {
+    color: rgba(26, 26, 26, 1);
+    font-weight: bold;
+    font-size: 20px;
+}
+.contenedorRecetas .receta .descripcion > p {
+    font-size: 13px;
+    font-weight: normal;
+    line-height: unset;
+    text-align: justify;
+    height: 60px;
+
+    
+}
+
+.contenedorRecetas .receta .descripcion .detalles {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: rgba(104, 76, 148, 1);
+}
+.contenedorRecetas .receta .descripcion .detalles .tiempo p,
+.contenedorRecetas .receta .descripcion .detalles .cantIngredientes p,
+.contenedorRecetas .receta .descripcion .detalles .dificultadReceta p {
+    font-size: 13px;
+    font-weight: normal;
+    line-height: unset;
+    color: rgba(104, 76, 148, 1);
+    margin-bottom: 0;
+    padding: 5px;
+}
+.contenedorRecetas .receta .descripcion .detalles .tiempo,
+.contenedorRecetas .receta .descripcion .detalles .cantIngredientes,
+.contenedorRecetas .receta .descripcion .detalles .dificultadReceta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.contenedorRecetas .receta .descripcion .detalles .tiempo img,
+.contenedorRecetas .receta .descripcion .detalles .cantIngredientes img {
+    width: 15px;
+    height: 15px;
+}
+.hide {
+    display: none;
+    visibility: hidden;
+    transition: 0.5s all;
 }

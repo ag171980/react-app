@@ -1,0 +1,79 @@
+.modalDetail {
+    transition: 0.5s all;
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+}
+.show {
+    opacity: 1;
+    visibility: visible;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.show .contentModal {
+    height: 500px;
+    width: 600px;
+    background-color: white;
+    border-radius: 10px;
+}
+.headModal {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    border-bottom: 2px solid #feecf1;
+    height: 10%;
+}
+.headModal img{
+    background: none;
+}
+.headModal h4 {
+    margin: 0 auto;
+    font-size: 17px;
+    font-weight: bold;
+}
+.bodyModal {
+    height: 75%;
+    padding: 10px 20px;
+}
+.bodyModal h4 {
+    padding: 10px 0;
+    font-size: 21px;
+}
+.bodyModal ul {
+    padding: 0;
+}
+.bodyModal ul li {
+    padding: 5px 0;
+    font-size: 16px;
+}
+.bodyModal ul li input {
+    margin-right: 10px;
+}
+.footerModal {
+    border-top: 1px solid lightgray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    height: 15%;
+}
+.footerModal .btn1 {
+    width: auto;
+    height: 44px;
+    padding: 5px 15px;
+    font-size: 14px;
+}
+.footerModal .btn4 {
+    width: auto;
+    padding: 5px 15px;
+    font-size: 14px;
+}

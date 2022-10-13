@@ -1,89 +1,127 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 // import { Link } from 'react-router-dom'
+
+//componentes
 import Navbar from '../components/NavBar/navbar'
+import Modal from '../components/Modal/modal'
+import Card from '../components/Card/card'
+
+
 import "./home.css"
 
 export default function Home() {
-    const ingredientesActuales = [];
-    const [ingredientes, setIngrediente] = useState(ingredientesActuales);
-    // const [recetas, setRecetas] = useState([])
+    const recetasComida = [
+        {
+            id: 1,
+            img: "pollito.png",
+            tipo: "Carnes",
+            nombre: "Pollo al horno con papas",
+            descripcion: "Pollito al horno con papas riki riki.  Laborum magna nulla duis ullamco cillum dolor. Laborum magna nulla duis ullamco cillum dolor.",
+            duracion: 30,
+            cantidadIngredientes: 6,
+            dificultad: "Fácil"
+        },
+        {
+            id: 2,
+            img: "milanesas.jpg",
+            tipo: "Carnes",
+            nombre: "Milanesas Napolitanas",
+            descripcion: "Milanesita napolitanas que tienen salsa, jamon, queso y tomate bien tanas. Laborum magna nulla duis ullamco cillum dolor.",
+            duracion: 30,
+            cantidadIngredientes: 6,
+            dificultad: "Dificil"
+        },
+        {
+            id: 3,
+            img: "Ensalada-cesar.jpg",
+            tipo: "Vegetales",
+            nombre: "Ensalada Cesar",
+            descripcion: "Ensalada Cesar bien simple para que comas sanito. Laborum magna nulla duis ullamco cillum dolor.",
+            duracion: 50,
+            cantidadIngredientes: 4,
+            dificultad: "Fácil"
+        },
+        {
+            id: 4,
+            img: "Ensalada-frutas.jpg",
+            tipo: "Frutas",
+            nombre: "Ensalada de Frutas",
+            descripcion: "Ensalada de frutas ideal para comer despues de una ensaladita Cesar, facil de hacer. Laborum magna nulla duis ullamco cillum dolor.",
+            duracion: 20,
+            cantidadIngredientes: 3,
+            dificultad: "Fácil"
+        }
+    ]
+    const [ingredientes, setIngrediente] = useState([]);
+    let resultadoFinal = []
+    const [recetas, setRecetas] = useState([])
 
-    function llenarIngredientes(e) {
-        e.preventDefault();
-        let ingrediente = document.querySelector("#ingrediente").value
-        setIngrediente([...ingredientes, ingrediente])
+    // function llenarIngredientes(e) {
+    //     e.preventDefault();
+    //     let ingrediente = document.querySelector("#ingrediente").value
+    //     setIngrediente([...ingredientes, ingrediente])
+    // }
+    const llenarIngredientes = (tipo) => {
+        setIngrediente([...ingredientes, tipo])
     }
-    function eliminarIngrediente(val) {
+    const eliminarIngrediente = (val) => {
         const asd = ingredientes.indexOf(val)
         if (asd > -1) {
             ingredientes.splice(asd, 1)
         }
         setIngrediente([...ingredientes])
     }
-    function modal() {
-        if (document.querySelector(".modalDetail").classList.contains("show")) {
-            document.querySelector(".modalDetail").classList.remove("show")
-        } else {
-            document.querySelector(".modalDetail").classList.add("show")
-        }
+
+    const mostrarRecetas = () => {
+        setTimeout(() => {
+            document.querySelector(".category").classList.add("hide")
+            document.querySelector(".presentacion").classList.add("hide")
+
+            resultadoFinal = recetasComida.filter((rec) => rec.tipo == ingredientes[0])
+            resultadoFinal.map((rec) => {
+                setRecetas([...recetas, rec])
+            })
+        }, 800);
     }
     useEffect(() => {
-        axios.get("https://kecomer.onrender.com/recipes/recipes/", {
-            method: 'GET',
-            mode: 'no-cors',
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json',
-            },
-            withCredentials: true,
-            credentials: 'same-origin',
-        })
-            .then((data) => {
-                console.log(data)
-            })
+
+        // axios.get("https://kecomer.onrender.com/recipes/recipes/", {
+        //     method: 'GET',
+        //     mode: 'no-cors',
+        //     headers: {
+        //         'Access-Control-Allow-Origin': '*',
+        //         'Content-Type': 'application/json',
+        //     },
+        //     withCredentials: true,
+        //     credentials: 'same-origin',
+        // })
+        //     .then((data) => {
+        //         console.log(data)
+        //     })
+
     }, [ingredientes])
+
     return (
         <React.Fragment>
             <div className='Home'>
-                <Navbar></Navbar>
+                <Navbar />
                 <main>
-                    <p>¡Hola! Ingresa los ingredientes y te <br /> decimos qué podes preparar <br /> <span>Podes ingresar hasta 5
+                    <p className='presentacion'>¡Hola! Ingresa los ingredientes y te <br /> decimos qué podes preparar <br /> <span>Podes ingresar hasta 5
                         ingredientes</span>
                     </p>
                     <div className="category">
-                        <div className="divCategory">
+                        <div className="divCategory" onClick={() => llenarIngredientes("Carnes")}>
                             <img src="../assets/img/carnes.png" alt='Carnes' />
-                            <span onClick={modal}>Carnes</span>
-                            <div className='modalDetail'>
-                                <div className='contentModal'>
-                                    <div className='headModal'>
-                                        <button onClick={modal}><img src='../assets/img/closeblack.png' alt='asdasd' /></button>
-                                        <h4>Seleccionar</h4>
-                                    </div>
-                                    <div className='bodyModal'>
-                                        <h4>Carnes</h4>
-                                        <ul>
-                                            <li><input type="checkbox" name="tiposCarnes" id='vaca' /> <label htmlFor='vaca'>Vaca</label></li>
-                                            <li><input type="checkbox" name="tiposCarnes" id='Cerdo' /> <label htmlFor='Cerdo'>Cerdo</label></li>
-                                            <li><input type="checkbox" name="tiposCarnes" id='Pollo' /> <label htmlFor='Pollo'>Pollo</label></li>
-                                            <li><input type="checkbox" name="tiposCarnes" id='Pescado' /> <label htmlFor='Pescado'>Pescado</label></li>
-                                            <li><input type="checkbox" name="tiposCarnes" id='Carnes' /> <label htmlFor='Carnes'>Carnes exóticas</label></li>
-                                            <li><input type="checkbox" name="tiposCarnes" id='Frutos' /> <label htmlFor='Frutos'>Frutos de mar</label></li>
-                                        </ul>
-                                    </div>
-                                    <div className='footerModal'>
-                                        <button className='btn1'>Confirmar selección</button>
-                                        <button className='btn4'>Confirmar selección</button>
-                                    </div>
-                                </div>
-                            </div>
+                            <span>Carnes</span>
+                            {/* <span onClick={modal}>Carnes</span> */}
+                            {/* <Modal abrirModal={modal} /> */}
                         </div>
-                        <div className="divCategory">
+                        <div className="divCategory" onClick={() => llenarIngredientes("Vegetales")}>
                             <img src="../assets/img/frutas.png" alt='Verduras' />
                             <span>Vegetales</span>
                         </div>
-                        <div className="divCategory">
+                        <div className="divCategory" onClick={() => llenarIngredientes("Frutas")}>
                             <img src="../assets/img/frutas.png" alt='Frutas' />
                             <span>Frutas</span>
                         </div>
@@ -116,7 +154,7 @@ export default function Home() {
                         <button onClick={llenarIngredientes} className="btn3">
                             <img src="../assets/img/mas0112483-jv7a.svg" alt='.' />
                             Agregar</button>
-                        <button className="btn4">Buscar recetas</button>
+                        <button onClick={mostrarRecetas} className="btn4">Buscar recetas</button>
                     </div>
                     <div className='ingredientes'>
                         {ingredientes.map((ingred, index) => {
@@ -125,6 +163,23 @@ export default function Home() {
                                 <button className='eliminarIngrediente' onClick={() => eliminarIngrediente(ingred)}>x</button>
                             </div>
                         })}
+                    </div>
+
+                    <div className='contenedorRecetas'>
+                        {
+                            recetas.map((receta, index) => <Card recetaInfo={receta} key={index} />)
+                            // resultadoFinal.map((receta) =>
+                            //     <Card recetaInfo={receta} key={receta.id} />
+                            // )
+                        }
+                        {/* <Card recetaInfo={}/> */}
+                        {/* <Card />
+                        <Card />
+                        <Card />
+                        <Card />
+                        <Card />
+                        <Card /> */}
+
                     </div>
                 </main>
             </div >
