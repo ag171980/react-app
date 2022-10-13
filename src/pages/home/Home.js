@@ -30,9 +30,14 @@ export default function Home() {
     }
     useEffect(() => {
         axios.get("https://kecomer.onrender.com/recipes/recipes/", {
+            method: 'GET',
+            mode: 'no-cors',
             headers: {
-                'Test-Header': 'test-value'
-            }
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+            },
+            withCredentials: true,
+            credentials: 'same-origin',
         })
             .then((data) => {
                 console.log(data)
