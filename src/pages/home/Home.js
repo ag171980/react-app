@@ -7,8 +7,8 @@ import Card from '../components/Card/card'
 import Navbar from '../components/NavBar/navbar'
 // import Nav from '../components/NavBar/Nav';
 import "./home.css"
-import { Context } from '../contexto/Context';
-import { useContext } from 'react';
+// import { Context } from '../contexto/Context';
+// import { useContext } from 'react';
 
 export default function Home() {
     const recetasComida = [
@@ -55,15 +55,15 @@ export default function Home() {
     ]
     const [ingredientes, setIngrediente] = useState([]);
     let resultadoFinal = []
-    const { log, account } = useContext(Context)
+    // const { log, account } = useContext(Context)
     const [recetas, setRecetas] = useState([])
-    function compare(props1, props2) {
-        if (props1[0].email !== props2.email && props1[0].contraseña !== props2.contraseña) {
-            return false;
-        } else {
-            return true;
-        }
-    }
+    // function compare(props1, props2) {
+    //     if (props1[0].email !== props2.email && props1[0].contraseña !== props2.contraseña) {
+    //         return false;
+    //     } else {
+    //         return true;
+    //     }
+    // }
 
     // function llenarIngredientes(e) {
     //     e.preventDefault();
@@ -86,10 +86,10 @@ export default function Home() {
             document.querySelector(".category").classList.add("hide")
             document.querySelector(".presentacion").classList.add("hide")
 
-            resultadoFinal = recetasComida.filter((rec) => rec.tipo == ingredientes[0])
-            resultadoFinal.map((rec) => {
+            resultadoFinal = recetasComida.filter((rec) => rec.tipo === ingredientes[0])
+            resultadoFinal.map((rec) =>
                 setRecetas([...recetas, rec])
-            })
+            )
         }, 800);
     }
     useEffect(() => {

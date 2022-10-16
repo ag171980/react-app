@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
+// import axios from 'axios'
 import Navbar from '../components/NavBar/navbar'
 import '../../assets/css/login.css'
 import { Formik ,Field, Form } from 'formik'
@@ -61,38 +61,38 @@ function LoginP() {
   }
 
   
-  function iniciarSesion(e) {
-    e.preventDefault();
-    const url = "https://localhost:3301/iniciarSesion"
-    let userData = {
-      email: document.querySelector("#email_user").value,
-      pwd: document.querySelector("#pwd_user").value
-    }
+  // function iniciarSesion(e) {
+  //   e.preventDefault();
+  //   const url = "https://localhost:3301/iniciarSesion"
+  //   let userData = {
+  //     email: document.querySelector("#email_user").value,
+  //     pwd: document.querySelector("#pwd_user").value
+  //   }
 
-    if (userData.email !== "" && userData.pwd !== "") {
-      axios.post(url, { userData })
-        .then((res) => {
-          console.log(res)
-          //aca deberia de haber una respuesta de la api que nos diga si los datos eran correctos o erroneos
+  //   if (userData.email !== "" && userData.pwd !== "") {
+  //     axios.post(url, { userData })
+  //       .then((res) => {
+  //         console.log(res)
+  //         //aca deberia de haber una respuesta de la api que nos diga si los datos eran correctos o erroneos
 
-          //mostrar notificacion donde diga que el usuario ingreso correctamente
-          localStorage.setItem("myUser", userData);
+  //         //mostrar notificacion donde diga que el usuario ingreso correctamente
+  //         localStorage.setItem("myUser", userData);
 
-          // o
+  //         // o
 
-          // mostrar notificacion donde diga que el usuario ingreso mal su email o pwd ya que no coinciden con el registro de la bbdd
-        })
-        .catch((err) => {
-          console.log(err)
-        })
-    } else {
-      // if (userData.email  == "") {
-      //   //mostrar notificacion de que no se ingreso email
-      // } else {
-      //   //mostrar notificacion de que no se ingreso pwd
-      // }
-    }
-  }
+  //         // mostrar notificacion donde diga que el usuario ingreso mal su email o pwd ya que no coinciden con el registro de la bbdd
+  //       })
+  //       .catch((err) => {
+  //         console.log(err)
+  //       })
+  //   } else {
+  //     // if (userData.email  == "") {
+  //     //   //mostrar notificacion de que no se ingreso email
+  //     // } else {
+  //     //   //mostrar notificacion de que no se ingreso pwd
+  //     // }
+  //   }
+  // }
 
 console.log(log)
 

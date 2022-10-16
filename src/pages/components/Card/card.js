@@ -15,15 +15,15 @@ export default function Card({ recetaInfo = [] }) {
                 <p>{recetaInfo.descripcion}</p>
                 <div className='detalles'>
                     <div className='tiempo'>
-                        <img src={Reloj} />
+                        <img src={Reloj} alt='Reloj' />
                         <p>{recetaInfo.duracion} min</p>
                     </div>
                     <div className='cantIngredientes'>
-                        <img src={Ingredientes} />
+                        <img src={Ingredientes} alt='Ingredientes' />
                         <p>{recetaInfo.cantidadIngredientes} ingredientes</p>
                     </div>
                     <div className='dificultadReceta'>
-                        <img src={Media} />
+                        <img src={Media} alt='Dificultad' />
                         <p>{recetaInfo.dificultad}</p>
                     </div>
                 </div>
