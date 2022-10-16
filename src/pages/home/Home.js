@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 // import { Link } from 'react-router-dom'
 
 //componentes
+import Card from '../components/Card/card'
 import Navbar from '../components/NavBar/navbar'
 // import Nav from '../components/NavBar/Nav';
 import "./home.css"
@@ -93,19 +94,19 @@ export default function Home() {
     }
     useEffect(() => {
 
-        // axios.get("https://kecomer.onrender.com/recipes/recipes/", {
-        //     method: 'GET',
-        //     mode: 'no-cors',
-        //     headers: {
-        //         'Access-Control-Allow-Origin': '*',
-        //         'Content-Type': 'application/json',
-        //     },
-        //     withCredentials: true,
-        //     credentials: 'same-origin',
-        // })
-        //     .then((data) => {
-        //         console.log(data)
-        //     })
+        axios.get("https://kecomer.pythonanywhere.com/admin/recipes/recipesmodel/", {
+            method: 'GET',
+            mode: 'no-cors',
+            headers: {
+                'Access-Control-Allow-Origin': '*',
+                'Content-Type': 'application/json',
+            },
+            withCredentials: true,
+            credentials: 'same-origin',
+        })
+            .then((data) => {
+                console.log(data)
+            })
 
     }, [ingredientes])
 
