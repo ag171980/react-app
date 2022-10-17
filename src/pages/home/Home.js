@@ -93,15 +93,14 @@ export default function Home() {
         }, 800);
     }
     useEffect(() => {
-
-        axios.get("https://kecomer.pythonanywhere.com/admin/recipes/recipesmodel/", {
+        axios.get("https://kecomer.pythonanywhere.com:3030/admin/recipes/recipesmodel/", {
             method: 'GET',
             mode: 'no-cors',
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json',
             },
-            withCredentials: true,
+            withCredentials: false,
             credentials: 'same-origin',
         })
             .then((data) => {

@@ -83,7 +83,7 @@ body.layout {
 }
 
 .highlights3 {
-  font: 700 16px/1.2 "Inter", Helvetica, Arial, serif;
+  font: 700 16px/1.2 "Inter", sans-serif;
   color: #e20a4b;
   letter-spacing: 0px;
 }

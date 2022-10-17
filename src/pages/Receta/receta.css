@@ -1,0 +1,163 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+main {
+    margin-top: 40px;
+}
+.Receta {
+    min-height: 100vh;
+    background-color: rgba(250, 250, 250, 1);
+}
+.Receta .rutas {
+    margin-right: 265px;
+    font-size: 15px;
+}
+.Receta .rutas a {
+    color: #6f6f6f;
+    text-decoration: none;
+    font-weight: 300;
+    padding: 0 8px;
+}
+.Receta .rutas .active {
+    color: black;
+    font-weight: 400;
+}
+.Receta .rutas a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+.Receta .contenido-receta .detalle-receta > img {
+    width: 680px;
+    height: 400px;
+}
+.Receta .contenido-receta {
+    display: flex;
+    flex-direction: row;
+}
+.Receta .contenido-receta .extras {
+    margin: 0 15px;
+    margin-top: 50px;
+}
+.Receta .contenido-receta .extras button {
+    width: 85px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #e3e3e3;
+    font-size: 13px;
+    border-radius: 7px;
+    transition: 0.5s all;
+}
+.Receta .contenido-receta .extras button:hover {
+    cursor: pointer;
+    transform: scale(1.06);
+}
+.Receta .contenido-receta .detalle-receta {
+    width: 680px;
+}
+.Receta .contenido-receta .detalle-receta h1 {
+    font-size: 25px;
+    font-weight: 700;
+    padding: 10px 0;
+}
+.Receta .contenido-receta .detalle-receta .detalles {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.Receta .contenido-receta .detalle-receta .detalles .tiempo,
+.Receta .contenido-receta .detalle-receta .detalles .cantIngredientes,
+.Receta .contenido-receta .detalle-receta .detalles .dificultadReceta {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 15px;
+    padding-right: 20px;
+}
+.Receta .contenido-receta .detalle-receta .detalles .tiempo img,
+.Receta .contenido-receta .detalle-receta .detalles .cantIngredientes img,
+.Receta .contenido-receta .detalle-receta .detalles .dificultadReceta img {
+    transform: scale(0.8);
+}
+.Receta .contenido-receta .detalle-receta .detalles .tiempo p,
+.Receta .contenido-receta .detalle-receta .detalles .cantIngredientes p,
+.Receta .contenido-receta .detalle-receta .detalles .dificultadReceta p {
+    font-size: 15px;
+    font-weight: normal;
+    line-height: unset;
+    color: rgba(104, 76, 148, 1);
+    margin-bottom: 0;
+    padding: 5px;
+}
+
+.Receta .contenido-receta .detalle-receta h2 {
+    margin-top: 30px;
+    font-size: 22px;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+}
+.Receta .contenido-receta .detalle-receta .descripcion {
+    text-align: start;
+    line-height: 25px;
+    font-size: 15px;
+    font-weight: normal;
+    padding-right: 30px;
+}
+.ingredientes-instrucciones {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+.ingredientes-instrucciones h3 {
+    font-size: 22px;
+    padding: 15px;
+    width: 50%;
+    text-align: center;
+    border-bottom: 3px solid black;
+}
+.ingredientes-instrucciones h3:hover {
+    cursor: pointer;
+}
+.ingredientes-instrucciones .disabled {
+    border-bottom: 3px solid #e3e3e3;
+}
+.contenedor-ingredientes .ingrediente {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px 0;
+    border-bottom: 1px solid #e3e3e3;
+}
+.contenedor-ingredientes .ingrediente p {
+    font-size: 18px;
+    line-height: normal;
+    margin-bottom: 0;
+    font-weight: 500;
+}
+.contenedor-ingredientes .ingrediente .cantidad-ingrediente {
+    font-weight: 400;
+}
+.contenedor-instrucciones {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.contenedor-instrucciones .instruccion {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 12px 0;
+}
+.contenedor-instrucciones .instruccion h4 {
+    font-size: 19px;
+}
+.contenedor-instrucciones .instruccion p {
+    text-align: start;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: normal;
+}

@@ -21,6 +21,9 @@
     /* height: 135px; */
     padding: 15px;
 }
+.receta .descripcion a{
+    text-decoration: none;
+}
 .receta .descripcion h2 {
     color: rgba(26, 26, 26, 1);
     font-weight: bold;
