@@ -80,32 +80,66 @@ export default function Home() {
         }
         setIngrediente([...ingredientes])
     }
+    const makeRequest = async (arrTypes) => {
+        try {
+            const response = await axios.get('https://kecomer.pythonanywhere.com/recipes/recipes/');
+            if (response.status === 200) { // response - object, eg { status: 200, message: 'OK' }
+                // console.log('success stuff');
+                // console.log(response.data)
 
-    const mostrarRecetas = () => {
+                let contArr = 0;
+                Object.entries(response.data).forEach((el) => {
+                    // console.log(arrTypes[contArr])
+
+                    if (el[0] === arrTypes[contArr]) {
+                        el[1].map((rec) =>
+                            setRecetas([...recetas, rec])
+                        )
+                        // setRecetas([...el[1]])
+                        // el[1].map(rec => {
+                        //     console.log(rec)
+                        //     console.log("---")
+                        //     setRecetas([...rec])
+                        // })
+                    }
+
+                });
+                return true;
+            }
+            return false;
+        } catch (err) {
+            console.error(err)
+            return false;
+        }
+    }
+
+    // console.log(makeRequest())
+    // axios({
+    //     method: 'GET',
+    //     url: "https://kecomer.pythonanywhere.com:3030/admin/recipes/recipesmodel/",
+    //     responseType: 'stream'
+
+    // })
+    //     .then((data) => {
+    //         console.log(data)
+    //     })
+    const mostrarRecetas = async () => {
+        await makeRequest(ingredientes)
+
         setTimeout(() => {
-            document.querySelector(".category").classList.add("hide")
-            document.querySelector(".presentacion").classList.add("hide")
+            
 
-            resultadoFinal = recetasComida.filter((rec) => rec.tipo === ingredientes[0])
-            resultadoFinal.map((rec) =>
-                setRecetas([...recetas, rec])
-            )
+            // document.querySelector(".category").classList.add("hide")
+            // document.querySelector(".presentacion").classList.add("hide")
+
+            // resultadoFinal = recetasComida.filter((rec) => rec === ingredientes[0])
+            // resultadoFinal.map((rec) =>
+            //     setRecetas([...recetas, rec])
+            // )
         }, 800);
     }
     useEffect(() => {
-        axios.get("https://kecomer.pythonanywhere.com:3030/admin/recipes/recipesmodel/", {
-            method: 'GET',
-            mode: 'no-cors',
-            headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Content-Type': 'application/json',
-            },
-            withCredentials: false,
-            credentials: 'same-origin',
-        })
-            .then((data) => {
-                console.log(data)
-            })
+
 
     }, [ingredientes])
 
@@ -118,17 +152,17 @@ export default function Home() {
                         ingredientes</span>
                     </p>
                     <div className="category">
-                        <div className="divCategory" onClick={() => llenarIngredientes("Carnes")}>
+                        <div className="divCategory" onClick={() => llenarIngredientes("C")}>
                             <img src="../assets/img/carnes.png" alt='Carnes' />
                             <span>Carnes</span>
                             {/* <span onClick={modal}>Carnes</span> */}
                             {/* <Modal abrirModal={modal} /> */}
                         </div>
-                        <div className="divCategory" onClick={() => llenarIngredientes("Vegetales")}>
+                        <div className="divCategory" onClick={() => llenarIngredientes("V")}>
                             <img src="../assets/img/frutas.png" alt='Verduras' />
                             <span>Vegetales</span>
                         </div>
-                        <div className="divCategory" onClick={() => llenarIngredientes("Frutas")}>
+                        <div className="divCategory" onClick={() => llenarIngredientes("P")}>
                             <img src="../assets/img/frutas.png" alt='Frutas' />
                             <span>Frutas</span>
                         </div>

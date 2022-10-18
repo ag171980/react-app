@@ -1,30 +1,37 @@
 // import axios from 'axios'
 import React from 'react'
 import Navbar from '../components/NavBar/navbar'
-// import { useState } from 'react';
 import { Formik, Field, Form } from 'formik';
+// import { useState } from 'react';
 //import { Context } from '../contexto/Context';
+//import { useContext } from 'react';
 import { Link } from 'react-router-dom'
 import * as yup from 'yup'
-//import { useContext } from 'react';
+import axios from 'axios';
 
 const reviewSchema = yup.object({
     email: yup.string().email('Invalid Email').required('required'),
-    nombre: yup.string().required().min(4).max(10),
-    apellido: yup.string().required().min(4).max(10),
-    contraseña: yup.string().required().matches(/^[0-9A-Za-z]*[!@#$%^&*()_+\-=\]{};':"\\|,.<>?][0-9a-zA-Z]*$/,
+    // nombre: yup.string().required().min(4).max(10),
+    username: yup.string().required().min(4).max(10),
+    last_name: yup.string().required().min(4).max(10),
+    // apellido: yup.string().required().min(4).max(10),
+    // contraseña: yup.string().required().matches(/^[0-9A-Za-z]*[!@#$%^&*()_+\-=\]{};':"\\|,.<>?][0-9a-zA-Z]*$/,
+    //     'Need one special character',).min(8).max(15),
+    password: yup.string().required().matches(/^[0-9A-Za-z]*[!@#$%^&*()_+\-=\]{};':"\\|,.<>?][0-9a-zA-Z]*$/,
+        'Need one special character',).min(8).max(15),
+    password2: yup.string().required().matches(/^[0-9A-Za-z]*[!@#$%^&*()_+\-=\]{};':"\\|,.<>?][0-9a-zA-Z]*$/,
         'Need one special character',).min(8).max(15),
 })
 export default function CrearCuenta() {
     //const{agregarCuenta, account} = useContext(Context)
     // const[datos, setDatos]= useState([])
-    // function showPwd() {
-    //     if (document.querySelector('#pwd_user').type === "password") {
-    //         document.querySelector('#pwd_user').type = 'text'
-    //     } else {
-    //         document.querySelector('#pwd_user').type = 'password'
-    //     }
-    // }
+    function showPwd() {
+        if (document.querySelector('#pwd_user').type === "password") {
+            document.querySelector('#pwd_user').type = 'text'
+        } else {
+            document.querySelector('#pwd_user').type = 'password'
+        }
+    }
 
     // const crearCuenta = (e) => {
     //     e.preventDefault();
@@ -76,10 +83,13 @@ export default function CrearCuenta() {
                                     <div>
                                     </div>
                                     <Formik
-                                        initialValues={{ email: '', nombre: '', apellido: '', contraseña: '' }}
+                                        initialValues={{ username: '', last_name: '', email: '', password: '', password2: '' }}
                                         validationSchema={reviewSchema}
-                                        onSubmit={(values, actions,) => {
+                                        onSubmit={(values, actions) => {
                                             actions.resetForm();
+                                            axios.post("https://kecomer.pythonanywhere.com/users/signup/", values).then(data => {
+                                                console.log(data)
+                                            })
                                             console.log(values);
                                         }}
                                     >
@@ -103,46 +113,65 @@ export default function CrearCuenta() {
                                                         <label for="text_nombre" className="form-label">Nombre</label>
                                                         <Field
                                                             id="text_nombre"
-                                                            name="nombre"
+                                                            name="username"
                                                             type="text"
                                                             className="form-control"
-                                                            onChangeText={props.handleChange('nombre')}
-                                                            onBlur={props.handleBlur('nombre')}
-                                                            value={props.values.nombre}
+                                                            onChangeText={props.handleChange('username')}
+                                                            onBlur={props.handleBlur('username')}
+                                                            value={props.values.username}
                                                         />
-                                                        <span className='Errorcolor'>{props.touched.nombre && props.errors.nombre}</span>
+                                                        <span className='Errorcolor'>{props.touched.username && props.errors.username}</span>
                                                     </div>
                                                     <div className='input-cont'>
                                                         <label for="text_apellido" className="form-label">Apellido</label>
                                                         <Field
                                                             id="text_apellido"
-                                                            name="apellido"
+                                                            name="last_name"
                                                             type="text"
-                                                            onChangeText={props.handleChange('apellido')}
-                                                            onBlur={props.handleBlur('apellido')}
-                                                            value={props.values.apellido}
+                                                            onChangeText={props.handleChange('last_name')}
+                                                            onBlur={props.handleBlur('last_name')}
+                                                            value={props.values.last_name}
                                                             className="form-control"
                                                         />
-                                                        <span className='Errorcolor'>{props.touched.apellido && props.errors.apellido}</span>
+                                                        <span className='Errorcolor'>{props.touched.last_name && props.errors.last_name}</span>
                                                     </div>
                                                 </div>
                                                 <div className="cont-pwd mb-3">
                                                     <label for="exampleInputPassword1" className="form-label">Contraseña</label>
                                                     <Field
                                                         id="pwd_user"
-                                                        name="contraseña"
+                                                        name="password"
                                                         type="password"
                                                         className="form-control"
                                                         secure={true}
-                                                        onChangeText={props.handleChange('contraseña')}
-                                                        onBlur={props.handleBlur('contraseña')}
-                                                        value={props.values.contraseña}
+                                                        onChangeText={props.handleChange('password')}
+                                                        onBlur={props.handleBlur('password')}
+                                                        value={props.values.password}
                                                     />
-                                                    <svg className='eye_hide bi bi-eye-slash-fill' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                                    <svg onClick={showPwd} className='eye_hide bi bi-eye-slash-fill' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                                                         <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z" />
                                                         <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z" />
                                                     </svg>
-                                                    <span className='Errorcolor'>{props.touched.contraseña && props.errors.contraseña}</span>
+                                                    <span className='Errorcolor'>{props.touched.password && props.errors.password}</span>
+                                                </div>
+
+                                                <div className="cont-pwd mb-3">
+                                                    <label for="exampleInputPassword1" className="form-label">Repetir contraseña</label>
+                                                    <Field
+                                                        id="pwd_user"
+                                                        name="password2"
+                                                        type="password"
+                                                        className="form-control"
+                                                        secure={true}
+                                                        onChangeText={props.handleChange('password2')}
+                                                        onBlur={props.handleBlur('password2')}
+                                                        value={props.values.password2}
+                                                    />
+                                                    <svg onClick={showPwd} className='eye_hide bi bi-eye-slash-fill' xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                                        <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7.029 7.029 0 0 0 2.79-.588zM5.21 3.088A7.028 7.028 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474L5.21 3.089z" />
+                                                        <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829l-2.83-2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12-.708.708z" />
+                                                    </svg>
+                                                    <span className='Errorcolor'>{props.touched.password2 && props.errors.password2}</span>
                                                 </div>
                                                 <div className="block10 layout">
                                                     <button type="submit" className="btn btn-outline-danger espacio" onClick={props.handleSubmit}>Crear cuenta</button>

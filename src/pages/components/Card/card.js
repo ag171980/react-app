@@ -11,12 +11,12 @@ export default function Card({ recetaInfo = [] }) {
     console.log(recetaInfo)
     return (
         <div className="receta">
-            <img src={require(`../../../assets/img/${recetaInfo.img}`)} alt={recetaInfo.img} />
+            {/* <img src={require(`../../../assets/img/${recetaInfo.image}`)} alt={recetaInfo.img} /> */}
             <div className='descripcion'>
                 <Link to='/receta'>
-                    <h2>{recetaInfo.nombre}</h2>
+                    <h2>{recetaInfo.title}</h2>
                 </Link>
-                <p>{recetaInfo.descripcion}</p>
+                <p>{recetaInfo.description}</p>
                 <div className='detalles'>
                     <div className='tiempo'>
                         <img src={Reloj} alt='Reloj' />
@@ -24,11 +24,11 @@ export default function Card({ recetaInfo = [] }) {
                     </div>
                     <div className='cantIngredientes'>
                         <img src={Ingredientes} alt='Ingredientes' />
-                        <p>{recetaInfo.cantidadIngredientes} ingredientes</p>
+                        <p>{recetaInfo.ingredients.length} ingredientes</p>
                     </div>
                     <div className='dificultadReceta'>
                         <img src={Media} alt='Dificultad' />
-                        <p>{recetaInfo.dificultad}</p>
+                        <p>{recetaInfo.timeday}</p>
                     </div>
                 </div>
             </div>

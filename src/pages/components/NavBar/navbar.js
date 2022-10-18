@@ -35,7 +35,9 @@ export default function Navbar1() {
                     <div className="btns">
                         <Link className='btn-link' to="/login"><button className="btn1">Ingresar</button></Link>
                         <Link className='btn-link' to="/creacuenta"><button className="btn2">Crea tu Cuenta</button></Link>
-                        {/* <Link to="/apiconsume"><button className="btn3">Api</button></Link> */}
+
+
+
                     </div>
                 </nav>
             </header>
