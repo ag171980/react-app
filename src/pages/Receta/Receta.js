@@ -38,7 +38,7 @@ export default function Receta() {
             }
         };
         return () => makeRequest();
-    }, [])
+    }, [recetaId])
 
 
 
