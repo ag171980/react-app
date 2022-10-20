@@ -9,13 +9,13 @@ import './card.css'
 
 export default function Card({ recetaInfo = [] }) {
     let difficult = recetaInfo.difficulty
-    if (difficult == "1") {
+    if (difficult === "1") {
         recetaInfo.difficulty = "Facil"
     }
-    if (difficult == "2") {
+    if (difficult === "2") {
         recetaInfo.difficulty = "Medio"
     }
-    if (difficult == "3") {
+    if (difficult === "3") {
         recetaInfo.difficulty = "Dificil"
     }
 

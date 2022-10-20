@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import Home from '../home/Home'
 
 import Navbar from '../components/NavBar/navbar'
-import NotFound from '../../assets/img/not.png'
+// import NotFound from '../../assets/img/not.png'
 import Ingredientes from '../../assets/img/ingredientes.png'
 import Media from '../../assets/img/media.png'
 import Reloj from '../../assets/img/reloj.png'
@@ -18,7 +18,7 @@ import axios from 'axios'
 export default function Receta() {
     let { recetaId } = useParams();
     const [receta, setReceta] = useState([]);
-    const [imagen, setImagen] = useState();
+    // const [imagen, setImagen] = useState();
     const makeRequest = async () => {
         try {
             const response = await axios.get(`https://kecomer.pythonanywhere.com/recipes/recipes/${recetaId}/`);
@@ -36,8 +36,7 @@ export default function Receta() {
     useEffect(() => {
         makeRequest()
     }, [recetaId])
-    useEffect(() => {
-    }, [imagen])
+
 
 
     function cambiarSeccion(val) {
@@ -61,7 +60,6 @@ export default function Receta() {
         // source.onerror = ""; return true; 
     }
 
-    Fuente: https://www.iteramos.com/pregunta/53529/deteccion-de-una-imagen-404-en-javascript
     return (
         <React.Fragment>
             <div className='Receta'>

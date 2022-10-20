@@ -40,9 +40,9 @@ export default function Home() {
                 let contArr = 0;
                 Object.entries(response.data).forEach((el) => {
                     if (el[0] === arrTypes[contArr]) {
-                        el[1].map((rec) => {
+                        el[1].map((rec) =>
                             setRecetas(recetas => [...recetas, rec])
-                        })
+                        )
                     }
 
                     // setRecetas([...recetas, el[1]])
@@ -145,35 +145,35 @@ export default function Home() {
                     <div className='ingredientes'>
                         {ingredientes.map((ingred, index) =>
                             <div className='ingredienteItem' key={index}>
-                                {ingred == "CARNE" &&
+                                {ingred === "CARNE" &&
                                     <p>Carnes</p>
                                 }
-                                {ingred == "V" &&
+                                {ingred === "V" &&
                                     <p>Vegetales</p>
                                 }
-                                {ingred == "P" &&
+                                {ingred === "P" &&
                                     <p>Frutas</p>
                                 }
-                                {ingred == "PA" &&
+                                {ingred === "PA" &&
                                     <p>Lacteos</p>
                                 }
-                                {ingred == "PA" &&
+                                {ingred === "PA" &&
                                     <p>Lacteos</p>
                                 }
-                                {ingred == "CO" &&
+                                {ingred === "CO" &&
                                     <p>Condimentos</p>
                                 }
-                                <button className='eliminarIngrediente' onClick={() => eliminarIngrediente(ingred)}><img src={Cerrar} /></button>
+                                <button className='eliminarIngrediente' onClick={() => eliminarIngrediente(ingred)}><img src={Cerrar} alt='icon eliminar ingrediente' /></button>
                             </div>
                         )}
                     </div>
 
                     <div className='contenedorRecetas'>
                         {
-                            recetas.length != 0 &&
+                            recetas.length !== 0 &&
                             recetas.map((receta, index) => <Card recetaInfo={receta} key={index} />)
                         }
-                        {stateRecetas == true &&
+                        {stateRecetas === true &&
                             <p> A</p>
                         }
 
