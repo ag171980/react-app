@@ -16,7 +16,7 @@ export default function RouterPage() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<LoginP />} />
           <Route path="/creacuenta" element={<CrearCuenta />} />
-          <Route path="/receta" element={<Receta />} />
+          <Route path="/receta/:recetaId" element={<Receta />} />
           <Route path="/apiconsume" element={<ApiConsumo />} />
         </Routes>
       </Router>

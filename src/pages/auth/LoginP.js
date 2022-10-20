@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/NavBar/navbar'
-// import axios from 'axios'
+
 import '../../assets/css/login.css'
 import { Formik, Field, Form } from 'formik'
 

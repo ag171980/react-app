@@ -8,8 +8,13 @@ main {
     background-color: rgba(250, 250, 250, 1);
 }
 .Receta .rutas {
-    margin-right: 265px;
+    position: relative;
+    left: -9.5%;
     font-size: 15px;
+}
+.Receta .rutas p {
+    font-size: 15px;
+    font-weight: normal;
 }
 .Receta .rutas a {
     color: #6f6f6f;
@@ -24,6 +29,9 @@ main {
 .Receta .rutas a:hover {
     cursor: pointer;
     text-decoration: underline;
+}
+.Receta .contenido-receta {
+    padding-bottom: 10vh;
 }
 .Receta .contenido-receta .detalle-receta > img {
     width: 680px;
@@ -109,19 +117,31 @@ main {
     flex-direction: row;
     align-items: center;
     width: 100%;
+    position: relative;
+    transition: 0.5s all;
 }
 .ingredientes-instrucciones h3 {
     font-size: 22px;
     padding: 15px;
     width: 50%;
     text-align: center;
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid #e3e3e3;
 }
 .ingredientes-instrucciones h3:hover {
     cursor: pointer;
 }
-.ingredientes-instrucciones .disabled {
-    border-bottom: 3px solid #e3e3e3;
+.ingredientes-instrucciones .barra {
+    position: absolute;
+    bottom: 8px;
+    width: 50%;
+    background-color: black;
+    height: 3px;
+    transition: 0.5s all;
+}
+.contenedor-ingredientes {
+    transition: 0.5s all;
+    display: flex;
+    flex-direction: column;
 }
 .contenedor-ingredientes .ingrediente {
     display: flex;
@@ -141,9 +161,10 @@ main {
     font-weight: 400;
 }
 .contenedor-instrucciones {
-    display: flex;
+    display: none;
     flex-direction: column;
-    align-items: center;
+
+    align-items: flex-start;
 }
 .contenedor-instrucciones .instruccion {
     display: flex;

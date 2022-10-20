@@ -2,6 +2,7 @@
     min-height: 100vh;
     background-color: rgba(250, 250, 250, 1);
 }
+
 .category {
     width: 800px;
     justify-content: center;
@@ -14,13 +15,16 @@
     border-radius: 50px;
     transition: 0.5s all;
 }
-.divCategory:hover{
+
+.divCategory:hover {
     cursor: pointer;
     background-color: #feecf1;
 }
-.divCategory:hover span{
+
+.divCategory:hover span {
     color: #a44663;
 }
+
 .divCategory span {
     font-size: 17px;
 }
@@ -29,32 +33,38 @@
     justify-content: space-between;
     width: 780px;
 }
+
 .barraBusqueda .btn3 {
     color: #e20a4b;
 }
+
 .barraBusqueda .btn4 {
     padding: 5px 0;
 }
+
 .input {
     width: 55%;
 }
+
 .input input {
     height: 100%;
     width: 100%;
     padding: 0;
 }
+
 .ingredientes {
     display: flex;
     flex-direction: row;
 }
+
 .ingredienteItem {
     background: #ffffff;
-    border: 2px solid #b67c8e;
+    border: 1px solid #b67c8e;
     border-radius: 20px;
     display: flex;
     align-items: center;
     margin: 0 10px;
-    padding: 5px 15px;
+    padding: 5px 12px;
     gap: 0.5rem;
     cursor: pointer;
     border-radius: 50px;
@@ -64,19 +74,26 @@
     justify-content: space-between;
     transition: 0.5s all;
 }
+
 .ingredienteItem p {
     color: #a44663;
     font-size: 15px;
-    font-weight: bold;
+    font-weight: normal;
     padding: 0;
     margin: 0;
     line-height: 0;
     padding-right: 5px;
 }
+
 .eliminarIngrediente {
+    height: 30px;
+    width: 30px;
     background-color: #feecf1;
     padding: 5px;
     border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .contenedorRecetas {
@@ -86,8 +103,9 @@
     justify-content: center;
     align-items: center;
     width: 70%;
-    padding: 15px 0;
+    padding-bottom: 10vh;
 }
+
 .contenedorRecetas .receta {
     border-radius: 5px;
     background-color: white;
@@ -97,27 +115,31 @@
     -moz-box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
     transition: 0.5s all;
 }
+
 .contenedorRecetas .receta img {
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     width: 100%;
 }
+
 .contenedorRecetas .receta .descripcion {
     padding: 15px;
 }
+
 .contenedorRecetas .receta .descripcion h2 {
     color: rgba(26, 26, 26, 1);
     font-weight: bold;
     font-size: 20px;
 }
-.contenedorRecetas .receta .descripcion > p {
+
+.contenedorRecetas .receta .descripcion>p {
     font-size: 13px;
     font-weight: normal;
     line-height: unset;
     text-align: justify;
     height: 60px;
 
-    
+
 }
 
 .contenedorRecetas .receta .descripcion .detalles {
@@ -126,6 +148,7 @@
     justify-content: space-between;
     color: rgba(104, 76, 148, 1);
 }
+
 .contenedorRecetas .receta .descripcion .detalles .tiempo p,
 .contenedorRecetas .receta .descripcion .detalles .cantIngredientes p,
 .contenedorRecetas .receta .descripcion .detalles .dificultadReceta p {
@@ -136,6 +159,7 @@
     margin-bottom: 0;
     padding: 5px;
 }
+
 .contenedorRecetas .receta .descripcion .detalles .tiempo,
 .contenedorRecetas .receta .descripcion .detalles .cantIngredientes,
 .contenedorRecetas .receta .descripcion .detalles .dificultadReceta {
@@ -149,8 +173,29 @@
     width: 15px;
     height: 15px;
 }
+
 .hide {
+    animation: hidden 0.5s ease-in-out;
     display: none;
     visibility: hidden;
     transition: 0.5s all;
+    height: 0px;
+}
+
+@keyframes hidden {
+    0% {
+        display: flex;
+        opacity: 1;
+        visibility: visible;
+        height: 100%;
+    }
+
+
+
+    100% {
+        opacity: 0;
+        display: none;
+        visibility: hidden;
+        height: 0%;
+    }
 }
