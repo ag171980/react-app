@@ -4,22 +4,13 @@ export const Context = createContext()
 const Provider = Context.Provider
 
 export const Contexto= ({children})=>{
-    const[account, setAccount]= useState([{email:'admin@gmail.com', contraseña:1234}])
-    const[log, setLog]= useState([])
-    const[True,setTrue]=useState(false)
-     const agregarCuenta = (obj)=>{
-        setAccount(obj)
-     }
-     const logIn= (obj)=>{
-      setLog(obj)
-     }
+    const[data, setData] = useState(JSON.parse(window.localStorage.getItem('userData')))
+    
     const Global={
-    agregarCuenta,
-    account,
-    logIn,
-    log,
-    True,
-    setTrue
+    data,
+    setData,
+    
+    
     }
     return(
         <Provider value={Global}>

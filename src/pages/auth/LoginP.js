@@ -1,11 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import axios from 'axios'
 import Navbar from '../components/NavBar/navbar'
+// import axios from 'axios'
 import '../../assets/css/login.css'
 import { Formik, Field, Form } from 'formik'
-import { Context } from '../contexto/Context'
-import { useContext } from 'react'
+
+
+
 import axios from 'axios'
 // import Cookies from 'universal-cookie'
 // import Home from '../home/Home';
@@ -22,6 +23,8 @@ function LoginP() {
   //     return false;
   //   }
   // }
+
+
 
 
 
@@ -93,14 +96,14 @@ function LoginP() {
   //     // }
   //   }
   // }
-
-
+  
+ 
   return (
     <React.Fragment>
       <div className="flex layout">
         <div className='notification'>
         </div>
-        <Navbar></Navbar>
+        <Navbar />
         <div className="block1 layout">
           <div className="block2 layout">
             <div className="block3 layout">
@@ -114,17 +117,16 @@ function LoginP() {
                     initialValues={{ email: "", password: "" }}
                     onSubmit={(values, actions,) => {
                       actions.resetForm();
-                      axios.post("https://kecomer.pythonanywhere.com/auth/jwt/create/", values).then(data => {
+                      axios.post("https://kecomer.pythonanywhere.com/users/login/", values).then(data => {
                         console.log(data)
-
                         const user = {
-                          username: data.username,
-                          lastname: data.last_name,
-                          token: data.access,
+                          username: data.data.user.username,
+                          lastname: data.data.user.last_name,
+                          token: data.data.token,
                         }
-                        localStorage.setItem('userData', user)
+                        localStorage.setItem('userData', JSON.stringify(user))
+                        window.location.reload()
                       }).catch(err => console.error(err))
-                      // logIn(values);
                     }}
                   >
                     {props => (
