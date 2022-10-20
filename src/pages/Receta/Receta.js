@@ -23,19 +23,22 @@ export default function Receta() {
     useEffect(() => {
         let makeRequest = async () => {
             try {
+
                 const response = await axios.get(`https://kecomer.pythonanywhere.com/recipes/recipes/${recetaId}/`);
                 if (response.status === 200) { // response - object, eg { status: 200, message: 'OK' }
-                    setReceta(receta=>[...receta, response.data])
+                    console.table(response.data)
+                    setReceta(receta => [...receta, response.data])
                     return true;
                 }
                 return false;
             } catch (err) {
+                console.log(err)
                 console.error(err)
                 return false;
             }
         };
-        makeRequest();
-    }, [recetaId])
+        return () => makeRequest();
+    }, [])
 
 
 
@@ -55,7 +58,7 @@ export default function Receta() {
     }
 
     function ImgError(e) {
-        console.log(e.target)
+        console.log(e.target.onerror)
         // source.src = "/noimage.gif"; 
         // source.onerror = ""; return true; 
     }
@@ -67,8 +70,8 @@ export default function Receta() {
                 <main>
                     <div className='rutas'>
                         {
-                            receta.map((rec) =>
-                                <p><Link to='/'>Home</Link>/<Link to={Home}>Resultados de búsqueda</Link> / <Link className='active' to={`/receta/${recetaId}`}>{rec.title}</Link></p>
+                            receta.map((rec, ind) =>
+                                <p key={ind}><Link to='/'>Home</Link>/<Link to={Home}>Resultados de búsqueda</Link> / <Link className='active' to={`/receta/${recetaId}`}>{rec.title}</Link></p>
                             )
                         }
 

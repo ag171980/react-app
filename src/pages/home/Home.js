@@ -14,7 +14,8 @@ import "./home.css"
 export default function Home() {
     const [ingredientes, setIngrediente] = useState([]);
     const [recetas, setRecetas] = useState([])
-    let stateRecetas = false
+    const [stateRecetas, setStateRecetas] = useState(false);
+
 
 
     // function llenarIngredientes(e) {
@@ -22,8 +23,13 @@ export default function Home() {
     //     let ingrediente = document.querySelector("#ingrediente").value
     //     setIngrediente([...ingredientes, ingrediente])
     // }
-    const llenarIngredientes = (tipo) => {
-        setIngrediente([...ingredientes, tipo])
+    const llenarIngredientes = (tipo = null) => {
+        if (tipo == null) {
+            let ingrediente = document.querySelector("#ingrediente").value
+            setIngrediente([...ingredientes, ingrediente])
+        } else {
+            setIngrediente([...ingredientes, tipo])
+        }
     }
     const eliminarIngrediente = (val) => {
         const asd = ingredientes.indexOf(val)
@@ -36,29 +42,23 @@ export default function Home() {
         try {
             const response = await axios.get('https://kecomer.pythonanywhere.com/recipes/recipes/');
             if (response.status === 200) { // response - object, eg { status: 200, message: 'OK' }
-                stateRecetas = true
+                console.log(response.data)
+                document.querySelector(".presentacion").classList.add("hide")
+
+                document.querySelector(".category").classList.add("hide")
+                setStateRecetas(true)
                 let contArr = 0;
-                Object.entries(response.data).forEach((el) => {
-                    if (el[0] === arrTypes[contArr]) {
-                        el[1].map((rec) =>
-                            setRecetas(recetas => [...recetas, rec])
-                        )
-                    }
 
-                    // setRecetas([...recetas, el[1]])
-                    // el[1].map((rec) =>
-                    //     // recetas.push(rec)
-
-                    // )
-                    // setRecetas([...el[1]])
-                    // el[1].map(rec => {
-                    //     console.log(rec)
-                    //     console.log("---")
-                    //     setRecetas([...rec])
-                    // })
-
-
-                });
+                setTimeout(() => {
+                    Object.entries(response.data).forEach((el) => {
+                        if (el[0] === arrTypes[contArr]) {
+                            el[1].map((rec) =>
+                                setRecetas(recetas => [...recetas, rec])
+                            )
+                        }
+                    });
+                    console.log(stateRecetas)
+                }, 800);
                 return true;
             }
             return false;
@@ -71,22 +71,12 @@ export default function Home() {
     const mostrarRecetas = async () => {
         await makeRequest(ingredientes)
 
-        setTimeout(() => {
 
-
-            // document.querySelector(".category").classList.add("hide")
-            // document.querySelector(".presentacion").classList.add("hide")
-
-            // resultadoFinal = recetasComida.filter((rec) => rec === ingredientes[0])
-            // resultadoFinal.map((rec) =>
-            //     setRecetas([...recetas, rec])
-            // )
-        }, 800);
     }
     useEffect(() => {
 
 
-    }, [ingredientes])
+    }, [stateRecetas])
 
     return (
         <React.Fragment>
@@ -125,7 +115,7 @@ export default function Home() {
                         </div>
                         <div className="divCategory">
                             <img src="../assets/img/grasas.png" alt='Grasas' />
-                            <span>Grasas y aceites</span>--
+                            <span>Grasas y aceites</span>
                         </div>
                         <div className="divCategory">
                             <img src="../assets/img/harinas-y-granos.png" alt='Harinass' />
@@ -137,7 +127,7 @@ export default function Home() {
                             <img src="../assets/img/lupa.svg" alt='Lupa' />
                             <input type="text" id='ingrediente' placeholder="Ingresar ingrediente" />
                         </div>
-                        <button onClick={llenarIngredientes} className="btn3">
+                        <button onClick={() => llenarIngredientes()} className="btn3">
                             <img src="../assets/img/mas0112483-jv7a.svg" alt='.' />
                             Agregar</button>
                         <button onClick={mostrarRecetas} className="btn4">Buscar recetas</button>
@@ -163,19 +153,24 @@ export default function Home() {
                                 {ingred === "CO" &&
                                     <p>Condimentos</p>
                                 }
+                                {ingred !== "CARNE" && ingred !== "V" && ingred !== "P" && ingred !== "PA" && ingred !== "CO" &&
+                                    <p>{ingred}</p>
+                                }
                                 <button className='eliminarIngrediente' onClick={() => eliminarIngrediente(ingred)}><img src={Cerrar} alt='icon eliminar ingrediente' /></button>
                             </div>
                         )}
                     </div>
 
                     <div className='contenedorRecetas'>
-                        {
-                            recetas.length !== 0 &&
-                            recetas.map((receta, index) => <Card recetaInfo={receta} key={index} />)
+                        {recetas.length !== 0 &&
+                            recetas.map((receta, index) => {
+                                return (<Card recetaInfo={receta} key={index} />);
+                            })
                         }
-                        {stateRecetas === true &&
-                            <p> A</p>
+                        {recetas.length === 0 &&
+                            <h1>{stateRecetas}</h1>
                         }
+
 
                     </div>
                 </main>
