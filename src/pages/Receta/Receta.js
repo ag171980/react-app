@@ -24,7 +24,8 @@ export default function Receta() {
         let makeRequest = async () => {
             try {
                 const response = await axios.get(`https://kecomer.pythonanywhere.com/recipes/recipes/${recetaId}/`);
-                if (response.status === 200) { // response - object, eg { status: 200, message: 'OK' }
+                console.log(response)
+                if (response.status === 200) {
                     setReceta(receta => [...receta, response.data])
                     return true;
                 }
@@ -84,7 +85,7 @@ export default function Receta() {
             e.target.src = NotFound
         }
     }
-
+    console.log(receta)
     return (
         <React.Fragment>
             <div className='Receta'>
