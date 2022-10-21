@@ -1,8 +1,8 @@
 // import axios from 'axios'
-import React, { useEffect } from 'react'
+import React from 'react'
 import Navbar from '../components/NavBar/navbar'
 import { Formik, Field, Form } from 'formik';
- import { useState } from 'react';
+import { useState } from 'react';
 //import { Context } from '../contexto/Context';
 //import { useContext } from 'react';
 import { Link } from 'react-router-dom'
@@ -25,8 +25,8 @@ const reviewSchema = yup.object({
 export default function CrearCuenta() {
     //const{agregarCuenta, account} = useContext(Context)
     // const[datos, setDatos]= useState([])
-    const[status, setStatus]=useState()
-    const[error, setError]=useState('')
+    const [status, setStatus] = useState()
+    const [error, setError] = useState('')
     function showPwd() {
         if (document.querySelector('#pwd_user').type === "password") {
             document.querySelector('#pwd_user').type = 'text'
@@ -91,29 +91,29 @@ export default function CrearCuenta() {
                                             axios.post("https://kecomer.pythonanywhere.com/users/signup/", values).then(data => {
                                                 setStatus(data.request.status)
                                                 console.log(data.request.status)
-                                            }).catch(function(err){
+                                            }).catch(function (err) {
                                                 setStatus(err.request.status)
                                                 console.log(err.request.status)
                                                 setError(err.response.data.email[0]);
-                                                
+
                                             })
-                                            
+
                                         }}
                                     >
                                         {(props) => (
                                             <Form>
                                                 {status === 201 ?
-                                                  <div class="alert alert-success" role="alert">
-                                                  Cuenta creada exitosamente
-                                                </div>
-                                                : status === 400 ?
-                                                <div class="alert alert-danger" role="alert" >
-                                                  {error}
-                                                 </div>
-                                                 :
-                                                 <div class="alert alert-danger" role="alert" style={{display: 'none'}} >
-                                                  {error}
-                                                 </div>
+                                                    <div class="alert alert-success" role="alert">
+                                                        Cuenta creada exitosamente
+                                                    </div>
+                                                    : status === 400 ?
+                                                        <div class="alert alert-danger" role="alert" >
+                                                            {error}
+                                                        </div>
+                                                        :
+                                                        <div class="alert alert-danger" role="alert" style={{ display: 'none' }} >
+                                                            {error}
+                                                        </div>
                                                 }
                                                 <div className="mb-3">
                                                     <label for="exampleInputEmail1" className="form-label">Correo electrónico</label>
