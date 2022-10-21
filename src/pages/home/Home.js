@@ -8,10 +8,8 @@ import Card from '../components/Card/card'
 import Navbar from '../components/NavBar/navbar'
 import Cerrar from '../../assets/img/close.png'
 import NoRecetas from '../../assets/img/notfound.png'
-// import N`av from '../components/NavBar/Nav';
+
 import "./home.css"
-// import { Context } from '../contexto/Context';
-// import { useContext } from 'react';
 
 export default function Home() {
     const [ingredientes, setIngrediente] = useState([]);

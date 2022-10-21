@@ -1,46 +1,35 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import "./navbar.css"
+import { Context } from '../../contexto/Context'
+import { useContext } from 'react'
 
-export default function Navbar1() {
+export default function Navbar() {
+  
+    const{data,setData}=useContext(Context)
+    console.log(data)
     return (
-        <div>
-            <header>
-                <nav>
+       <>
+       <div class="container-fluid">
+       <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom bg-white">
+      <Link to="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+      <img src="../assets/img/KeComer.png" alt="" className="icon1 layout mr-3" />
+                            <h3 className="highlights3 layout ms-2">KE COMER</h3>
+      </Link>
 
-                    <div className="block15__item">
-                        <Link className='logo' to="/">
-                            <img src="../assets/img/KeComer.png" alt="" className="icon1 layout" />
-                            <h3 className="highlights3 layout">KE COMER</h3>
-                        </Link>
-
-                    </div>
-
-                    {/* <div className="url">
-                        <ul>
-                            <li>
-                                <label for="carnes">Carnes <img src="../assets/img/flecha-abajo.svg" alt='flecha abajo' /></label>
-                            </li>
-                            <li>
-                                <label for="vegetales">Vegetales <img src="../assets/img/flecha-abajo.svg" alt='flecha abajo' /></label>
-                            </li>
-                            <li>
-                                <label for="condimientos">Codimentos <img src="../assets/img/flecha-abajo.svg" alt='flecha abajo' /></label>
-                            </li>
-                            <li>
-                                <label for="categoria">Mas Categorias <img src="../assets/img/flecha-abajo.svg" alt='flecha abajo' /></label>
-                            </li>
-                        </ul>
-                    </div> */}
-                    <div className="btns">
-                        <Link className='btn-link' to="/login"><button className="btn1">Ingresar</button></Link>
-                        <Link className='btn-link' to="/creacuenta"><button className="btn2">Crea tu Cuenta</button></Link>
-
-
-
-                    </div>
-                </nav>
-            </header>
-        </div>
+      {!data ? <div className="btns">
+                        <Link className='btn-link' to="/login"><button type="button" class="btn btn-outline-danger">Ingresar</button></Link>
+                        <Link className='btn-link' to="/creacuenta"><button type="button" class="btn btn-outline-danger bg-red-500">Crear Cuenta</button></Link>
+                    </div> :
+                                  <div className='d-flex flex-row justify-content-evenly align-items-center'>
+                              <span style={{textTransform:'capitalize', marginRight:'10px'}}>{data.username} {data.lastname}</span>
+                          <img  src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp" class="rounded-circle"
+                            height="30" alt="Avatar" loading="lazy" />
+                    <i class="fa-solid fa-right-from-bracket" style={{fontSize:'20px', marginLeft:'20px'}} onClick={()=>{localStorage.clear(); setData(''); window.location.reload()} }></i>
+                  </div>
+                      } 
+    </header>
+  </div>
+       </>
     )
 }
