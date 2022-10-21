@@ -18,6 +18,8 @@ import axios from 'axios'
 export default function Receta() {
     let { recetaId } = useParams();
     const [receta, setReceta] = useState([]);
+
+    console.log(recetaId)
     // const [imagen, setImagen] = useState();
 
     useEffect(() => {
