@@ -19,9 +19,6 @@ export default function Receta() {
     let { recetaId } = useParams();
     const [receta, setReceta] = useState([]);
 
-    console.log(recetaId)
-    // const [imagen, setImagen] = useState();
-
     useEffect(() => {
         let makeRequest = async () => {
             try {
@@ -37,7 +34,7 @@ export default function Receta() {
                 return false;
             }
         };
-        return () => makeRequest();
+        return () => { makeRequest() };
     }, [recetaId])
 
 
@@ -87,7 +84,6 @@ export default function Receta() {
             e.target.src = NotFound
         }
     }
-    console.log(receta)
     return (
         <React.Fragment>
             <div className='Receta'>
