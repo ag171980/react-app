@@ -7,8 +7,9 @@ import React, { useEffect, useState } from 'react'
 import Card from '../components/Card/card'
 import Navbar from '../components/NavBar/navbar'
 import Cerrar from '../../assets/img/close.png'
+import Verdura from "../../assets/img/verduras.png"
 import NoRecetas from '../../assets/img/notfound.png'
-
+import '../../assets/css/home.css'
 import "./home.css"
 
 export default function Home() {
@@ -95,7 +96,7 @@ export default function Home() {
                             {/* <Modal abrirModal={modal} /> */}
                         </div>
                         <div className="divCategory" onClick={() => llenarIngredientes("VEGANA")}>
-                            <img src="../assets/img/frutas.png" alt='Verduras' />
+                            <img src={Verdura} alt='Verduras' />
                             <span>Vegetales</span>
                         </div>
                         <div className="divCategory" onClick={() => llenarIngredientes("POSTRE")}>
