@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import React, { useEffect, useState } from 'react'
 // import { Link } from 'react-router-dom'
 
@@ -6,6 +7,7 @@ import React, { useEffect, useState } from 'react'
 import Card from '../components/Card/card'
 import Navbar from '../components/NavBar/navbar'
 import Cerrar from '../../assets/img/close.png'
+import NoRecetas from '../../assets/img/notfound.png'
 // import N`av from '../components/NavBar/Nav';
 import "./home.css"
 // import { Context } from '../contexto/Context';
@@ -25,8 +27,9 @@ export default function Home() {
     // }
     const llenarIngredientes = (tipo = null) => {
         if (tipo == null) {
-            let ingrediente = document.querySelector("#ingrediente").value
-            setIngrediente([...ingredientes, ingrediente])
+            let ingrediente = document.querySelector("#ingrediente")
+            setIngrediente([...ingredientes, ingrediente.value])
+            ingrediente.value = ""
         } else {
             setIngrediente([...ingredientes, tipo])
         }
@@ -41,11 +44,12 @@ export default function Home() {
     const makeRequest = async (arrTypes) => {
         try {
             const response = await axios.get('https://kecomer.pythonanywhere.com/recipes/recipes/');
-            if (response.status === 200) { // response - object, eg { status: 200, message: 'OK' }
+            if (response.status === 200) {
+                setRecetas([])
                 console.log(response.data)
                 document.querySelector(".presentacion").classList.add("hide")
-
-                document.querySelector(".category").classList.add("hide")
+                // document.querySelector(".category").classList.add("hide")
+                // document.querySelector(".btn4").classList.add("hide")
                 setStateRecetas(true)
                 let contArr = 0;
 
@@ -57,7 +61,6 @@ export default function Home() {
                             )
                         }
                     });
-                    console.log(stateRecetas)
                 }, 800);
                 return true;
             }
@@ -93,15 +96,15 @@ export default function Home() {
                             {/* <span onClick={modal}>Carnes</span> */}
                             {/* <Modal abrirModal={modal} /> */}
                         </div>
-                        <div className="divCategory" onClick={() => llenarIngredientes("V")}>
+                        <div className="divCategory" onClick={() => llenarIngredientes("VEGANA")}>
                             <img src="../assets/img/frutas.png" alt='Verduras' />
                             <span>Vegetales</span>
                         </div>
-                        <div className="divCategory" onClick={() => llenarIngredientes("P")}>
+                        <div className="divCategory" onClick={() => llenarIngredientes("POSTRE")}>
                             <img src="../assets/img/frutas.png" alt='Frutas' />
                             <span>Frutas</span>
                         </div>
-                        <div className="divCategory" onClick={() => llenarIngredientes("C")}>
+                        <div className="divCategory" onClick={() => llenarIngredientes("PA")}>
                             <img src="../assets/img/lacteos.png" alt='Lacteos' />
                             <span>Lateos</span>
                         </div>
@@ -109,15 +112,15 @@ export default function Home() {
                             <img src="../assets/img/especias.png" alt='Especias' />
                             <span>Condimentos</span>
                         </div>
-                        <div className="divCategory">
+                        <div className="divCategory" onClick={() => llenarIngredientes("BEBIDAS")}>
                             <img src="../assets/img/bebidas.png" alt='Bebidas' />
                             <span>Bebidas</span>
                         </div>
-                        <div className="divCategory">
+                        <div className="divCategory" onClick={() => llenarIngredientes("GRASAS")}>
                             <img src="../assets/img/grasas.png" alt='Grasas' />
                             <span>Grasas y aceites</span>
                         </div>
-                        <div className="divCategory">
+                        <div className="divCategory" onClick={() => llenarIngredientes("HARINAS")}>
                             <img src="../assets/img/harinas-y-granos.png" alt='Harinass' />
                             <span>Harinas y granos</span>
                         </div>
@@ -138,14 +141,11 @@ export default function Home() {
                                 {ingred === "CARNE" &&
                                     <p>Carnes</p>
                                 }
-                                {ingred === "V" &&
+                                {ingred === "VEGANA" &&
                                     <p>Vegetales</p>
                                 }
-                                {ingred === "P" &&
+                                {ingred === "POSTRE" &&
                                     <p>Frutas</p>
-                                }
-                                {ingred === "PA" &&
-                                    <p>Lacteos</p>
                                 }
                                 {ingred === "PA" &&
                                     <p>Lacteos</p>
@@ -153,7 +153,16 @@ export default function Home() {
                                 {ingred === "CO" &&
                                     <p>Condimentos</p>
                                 }
-                                {ingred !== "CARNE" && ingred !== "V" && ingred !== "P" && ingred !== "PA" && ingred !== "CO" &&
+                                {ingred === "BEBIDAS" &&
+                                    <p>Bebidas</p>
+                                }
+                                {ingred === "GRASAS" &&
+                                    <p>Grasas y aceites</p>
+                                }
+                                {ingred === "HARINAS" &&
+                                    <p>Harinas y granos</p>
+                                }
+                                {ingred !== "CARNE" && ingred !== "VEGANA" && ingred !== "POSTRE" && ingred !== "PA" && ingred !== "CO" && ingred !== "BEBIDAS" && ingred !== "GRASAS" && ingred !== "HARINAS" &&
                                     <p>{ingred}</p>
                                 }
                                 <button className='eliminarIngrediente' onClick={() => eliminarIngrediente(ingred)}><img src={Cerrar} alt='icon eliminar ingrediente' /></button>
@@ -164,11 +173,15 @@ export default function Home() {
                     <div className='contenedorRecetas'>
                         {recetas.length !== 0 &&
                             recetas.map((receta, index) => {
-                                return (<Card recetaInfo={receta} key={index} />);
+                                return (
+
+                                    <Card recetaInfo={receta} key={index} />
+
+                                );
                             })
                         }
-                        {recetas.length === 0 &&
-                            <h1>{stateRecetas}</h1>
+                        {recetas.length === 0 && stateRecetas === true &&
+                            <img src={NoRecetas} alt="No hay recetas" />
                         }
 
 

@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import Home from '../home/Home'
 
 import Navbar from '../components/NavBar/navbar'
-// import NotFound from '../../assets/img/not.png'
+import NotFound from '../../assets/img/not.png'
 import Ingredientes from '../../assets/img/ingredientes.png'
 import Media from '../../assets/img/media.png'
 import Reloj from '../../assets/img/reloj.png'
@@ -12,7 +12,7 @@ import Guardar from '../../assets/img/heart.png'
 import Compartir from '../../assets/img/compartir.png'
 import Imprimir from '../../assets/img/imprimir.png'
 
-// import './receta.css'
+import './receta.css'
 import axios from 'axios'
 
 export default function Receta() {
@@ -56,11 +56,38 @@ export default function Receta() {
             instrucciones.style.display = "flex"
         }
     }
+    function copiarAlPortapapeles() {
+        console.log(window.location.href)
 
+        // Crea un campo de texto "oculto"
+        var aux = document.createElement("input");
+        aux.setAttribute("value", window.location.href);
+        document.body.appendChild(aux);
+        aux.select();
+        document.execCommand("copy");
+        document.body.removeChild(aux);
+        let copiado = document.querySelector(".copiado")
+        copiado.style.zIndex = "1";
+        copiado.style.transition = "0.5s all";
+        setTimeout(() => {
+            copiado.style.zIndex = "-1";
+        }, 3000);
+
+    }
+    function like() {
+        let like = document.querySelector(".like")
+        if (like.classList.contains("liked")) {
+            like.classList.remove("liked")
+        } else {
+            like.classList.add("liked")
+        }
+
+    }
     function ImgError(e) {
-        console.log(e.target.onerror)
-        // source.src = "/noimage.gif"; 
-        // source.onerror = ""; return true; 
+        if (e.target.height <= 24) {
+            e.target.src = NotFound
+        } else {
+        }
     }
 
     return (
@@ -68,19 +95,17 @@ export default function Receta() {
             <div className='Receta'>
                 <Navbar />
                 <main>
-                    <div className='rutas'>
-                        {
-                            receta.map((rec, ind) =>
-                                <p key={ind}><Link to='/'>Home</Link>/<Link to={Home}>Resultados de búsqueda</Link> / <Link className='active' to={`/receta/${recetaId}`}>{rec.title}</Link></p>
-                            )
-                        }
-
+                    <div className='copiado'>
+                        ¡Link copiado!
                     </div>
                     <div className='contenido-receta'>
                         {receta.map((rec, index) =>
                             <div className='detalle-receta' key={index}>
+                                <div className='rutas'>
+                                    <p><Link to='/'>Home</Link>/<Link to={Home}>Resultados de búsqueda</Link> / <Link className='active' to={`/receta/${recetaId}`}>{rec.title}</Link></p>
+                                </div>
                                 <h1>{rec.title}</h1>
-                                <img src={rec.image} onError={ImgError} alt='Imagen de la receta' />
+                                <img className='image-receta' src={rec.image === null ? NotFound : rec.image} onError={ImgError} alt='Imagen de la receta' />
                                 <div className='detalles'>
                                     <div className='tiempo'>
                                         <img src={Reloj} alt='Reloj' />
@@ -123,15 +148,15 @@ export default function Receta() {
                         )}
 
                         <div className='extras'>
-                            <button>
-                                <img src={Guardar} alt='Guardar' />
+                            <button onClick={like}>
+                                <img className='like' src={Guardar} alt='Guardar' />
                                 Guardar
                             </button>
                             <button>
                                 <img src={Imprimir} alt='Imprimir' />
                                 Imprimir
                             </button>
-                            <button>
+                            <button onClick={copiarAlPortapapeles}>
                                 <img src={Compartir} alt='Compartir' />
                                 Compartir
                             </button>
