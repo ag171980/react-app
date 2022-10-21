@@ -19,6 +19,9 @@ export default function Receta() {
     let { recetaId } = useParams();
     const [receta, setReceta] = useState([]);
 
+    axios.get(`https://kecomer.pythonanywhere.com/recipes/recipes/2/`)
+        .then(data => console.log(data))
+        .catch(err => console.error(err))
     useEffect(() => {
         let makeRequest = async () => {
             try {
