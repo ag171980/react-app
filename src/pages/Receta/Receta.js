@@ -23,16 +23,13 @@ export default function Receta() {
     useEffect(() => {
         let makeRequest = async () => {
             try {
-
                 const response = await axios.get(`https://kecomer.pythonanywhere.com/recipes/recipes/${recetaId}/`);
                 if (response.status === 200) { // response - object, eg { status: 200, message: 'OK' }
-                    console.table(response.data)
                     setReceta(receta => [...receta, response.data])
                     return true;
                 }
                 return false;
             } catch (err) {
-                console.log(err)
                 console.error(err)
                 return false;
             }
@@ -57,7 +54,6 @@ export default function Receta() {
         }
     }
     function copiarAlPortapapeles() {
-        console.log(window.location.href)
 
         // Crea un campo de texto "oculto"
         var aux = document.createElement("input");
@@ -86,7 +82,6 @@ export default function Receta() {
     function ImgError(e) {
         if (e.target.height <= 24) {
             e.target.src = NotFound
-        } else {
         }
     }
 

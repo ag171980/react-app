@@ -128,10 +128,12 @@ export default function Home() {
                             <img src="../assets/img/lupa.svg" alt='Lupa' />
                             <input type="text" id='ingrediente' placeholder="Ingresar ingrediente" />
                         </div>
-                        <button onClick={() => llenarIngredientes()} className="btn3">
-                            <img src="../assets/img/mas0112483-jv7a.svg" alt='.' />
-                            Agregar</button>
-                        <button onClick={mostrarRecetas} className="btn4">Buscar recetas</button>
+                        <div className='buttons-busqueda'>
+                            <button onClick={() => llenarIngredientes()} className="btn3">
+                                <img src="../assets/img/mas0112483-jv7a.svg" alt='.' />
+                                Agregar</button>
+                            <button onClick={mostrarRecetas} className="btn4">Buscar recetas</button>
+                        </div>
                     </div>
                     <div className='ingredientes'>
                         {ingredientes.map((ingred, index) =>

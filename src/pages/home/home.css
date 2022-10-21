@@ -38,12 +38,17 @@ main {
 
 .barraBusqueda .btn3 {
     color: #e20a4b;
+    margin: 0 20px;
 }
 
 .barraBusqueda .btn4 {
     padding: 5px 0;
 }
 
+.buttons-busqueda {
+    display: flex;
+    flex-direction: row;
+}
 .input {
     width: 55%;
 }
@@ -115,7 +120,6 @@ main {
     grid-gap: 30px;
     justify-content: center;
     align-items: center;
-    width: 70%;
     padding-bottom: 10vh;
 }
 .contenedorRecetas .receta {
@@ -205,5 +209,49 @@ main {
         display: none;
         visibility: hidden;
         height: 0%;
+    }
+}
+
+@media (max-width: 1024px) {
+    .contenedorRecetas {
+        grid-template-columns: auto auto;
+    }
+    .contenedorRecetas .receta {
+        width: 320px;
+    }
+}
+
+@media (max-width: 768px) {
+    .category {
+        width: 100vw;
+        margin: 0 10px;
+    }
+    .divCategory {
+        padding: 7px 10px;
+    }
+    .divCategory span {
+        font-size: 15px;
+    }
+    .barraBusqueda {
+        width: 100vw;
+        justify-content: center;
+    }
+}
+@media (max-width:675px){
+    .contenedorRecetas {
+        grid-template-columns: auto;
+    }
+}
+@media (max-width: 590px) {
+    .presentacion {
+        font-size: 30px;
+        width: 95vw;
+    }
+    .barraBusqueda {
+        display: flex;
+        flex-direction: column;
+    }
+    .input {
+        width: 90vw;
     }
 }

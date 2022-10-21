@@ -8,7 +8,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom'
 import * as yup from 'yup'
 import axios from 'axios';
-
+import "../../assets/css/crear_cuenta.css"
 const reviewSchema = yup.object({
     email: yup.string().email('Invalid Email').required('required'),
     // nombre: yup.string().required().min(4).max(10),

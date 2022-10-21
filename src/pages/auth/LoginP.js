@@ -124,7 +124,7 @@ function LoginP() {
                           token: data.data.token,
                         }
                         localStorage.setItem('userData', JSON.stringify(user))
-                        window.location.reload()
+                        window.location.href = "/"
                       }).catch(err => console.error(err))
                     }}
                   >

@@ -1,13 +1,12 @@
 /* This source code is exported from pxCode, you can get more document from https://www.pxcode.io */
 :root {
-  --color-primary: #ffce00 ;
-  --color-secondary: #ffa300 ; 
-  --color-text: #707789 ;
+  --color-primary: #ffce00;
+  --color-secondary: #ffa300;
+  --color-text: #707789;
   --color-bg: #dedede;
   --font-title: fresh;
-  --background_url:url(../img/61e1e250049879ff2b2a187cae2066f4.png);
+  --background_url: url(../img/61e1e250049879ff2b2a187cae2066f4.png);
 }
-
 
 body {
   display: flex;
@@ -72,8 +71,9 @@ body.layout {
 .block1.layout {
   position: relative;
   overflow: hidden;
-  width: 40.28%;
-  margin: 56px auto 0px;
+  width: 40%;
+  /* width: 40.28%;
+  margin: 56px auto 0px; */
 }
 
 .block2 {
@@ -221,7 +221,7 @@ body.layout {
 }
 
 /*-----------------------------------*/
-.olvide  {
+.olvide {
   display: flex;
   justify-content: center;
   font: 500 16px/1.25 "Poppins", Helvetica, Arial, serif;
@@ -238,7 +238,7 @@ body.layout {
   margin-top: 10px;
 }
 
-.crea_cuenta  {
+.crea_cuenta {
   font: 500 16px/1.25 "Poppins", Helvetica, Arial, serif;
   color: #e20a4b;
   text-align: center;
@@ -248,4 +248,20 @@ body.layout {
   margin-left: 0;
 }
 
+@media (max-width: 768px) {
+  .block1.layout {
+    width: 70%;
+  }
+}
 
+@media (max-width: 525px) {
+  .block1.layout {
+    width: 85%;
+  }
+}
+
+@media (max-width: 425px) {
+  .block1.layout {
+    width: 90%;
+  }
+}
