@@ -19,32 +19,14 @@ export default function Receta() {
     let { recetaId } = useParams();
     const [receta, setReceta] = useState([]);
 
-    axios.get(`https://kecomer.pythonanywhere.com/recipes/recipes/2/`)
-        .then(data => console.log(data))
-        .catch(err => console.error(err))
     useEffect(() => {
-        // let makeRequest = async () => {
-        // try {
         axios.get(`https://kecomer.pythonanywhere.com/recipes/recipes/${recetaId}/`)
             .then(data => {
                 if (data.status === 200) {
                     setReceta(receta => [...receta, data.data])
-                    // return true;
                 }
             })
             .catch(err => console.error(err))
-        // console.log(response)
-        // if (response.status === 200) {
-        //     setReceta(receta => [...receta, response.data])
-        //     return true;
-        // }
-        // return false;
-        // } catch (err) {
-        //     console.error(err)
-        //     return false;
-        // }
-        // };
-        // return () => { makeRequest() };
     }, [recetaId])
 
 
