@@ -93,8 +93,8 @@ export default function Receta() {
                         ¡Link copiado!
                     </div>
                     <div className='contenido-receta'>
-                        {receta.map((rec, index) =>
-                            <div className='detalle-receta' key={index}>
+                        {receta.map((rec, ind) =>
+                            <div className='detalle-receta' key={ind}>
                                 <div className='rutas'>
                                     <p><Link to='/'>Home</Link>/<Link to={Home}>Resultados de búsqueda</Link> / <Link className='active' to={`/receta/${recetaId}`}>{rec.title}</Link></p>
                                 </div>
@@ -123,7 +123,7 @@ export default function Receta() {
                                 </div>
                                 <div className='contenedor-ingredientes'>
                                     {rec.ingredients.map((ingredient, iter) =>
-                                        <div className='ingrediente'>
+                                        <div className='ingrediente' key={iter}>
                                             <p className='nombre-ingrediente'>{ingredient}</p>
                                             <p className='cantidad-ingrediente'>{rec.quantity[iter]}</p>
                                         </div>
@@ -131,14 +131,13 @@ export default function Receta() {
                                 </div>
                                 <div className='contenedor-instrucciones'>
                                     {rec.instruction.map((instruc, i) =>
-                                        <div className='instruccion'>
+                                        <div className='instruccion' key={i}>
                                             <h4>Paso {i + 1}</h4>
                                             <p>{instruc}</p>
                                         </div>
                                     )}
                                 </div>
                             </div>
-
                         )}
 
                         <div className='extras'>
