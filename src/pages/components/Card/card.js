@@ -1,4 +1,4 @@
-import { Animated } from "react-animated-css";
+//import { Animated } from "react-animated-css";
 //imgs
 // import Pollo from '../../../assets/img/pollito.png'
 import Ingredientes from '../../../assets/img/ingredientes.png'
@@ -26,7 +26,7 @@ export default function Card({ recetaInfo = [] }) {
         }
     }
     return (
-        <Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
+        //<Animated animationIn="fadeIn" animationOut="fadeOut" isVisible={true}>
 
             <div className="receta">
                 <img src={recetaInfo.image === null ? NotFound : recetaInfo.image} alt={recetaInfo.img} onError={ImgError} />
@@ -51,6 +51,6 @@ export default function Card({ recetaInfo = [] }) {
                     </div>
                 </div>
             </div>
-        </Animated >
+        //</Animated >
     )
 }

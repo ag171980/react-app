@@ -133,10 +133,11 @@ export default function Receta() {
                         )}
 
                         <div className='extras'>
-                            <button onClick={like}>
+                            <Link to='/login'><button onClick={like}>
                                 <img className='like' src={Guardar} alt='Guardar' />
                                 Guardar
                             </button>
+                            </Link>
                             <button>
                                 <img src={Imprimir} alt='Imprimir' />
                                 Imprimir
